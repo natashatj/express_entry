@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806203722) do
+ActiveRecord::Schema.define(version: 20160806213029) do
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "points"
+    t.string   "primary_age"
+    t.string   "primary_edu"
+    t.string   "primary_first_lang"
+    t.string   "primary_second_lang"
+    t.string   "primary_cdn_work"
+    t.string   "secondary_edu"
+    t.string   "secondary_first_lang"
+    t.string   "secondary_cdn_work"
+    t.string   "adapt_ed_lang"
+    t.string   "adapt_ed_cdn_xp"
+    t.string   "adapt_frg_xp_lang"
+    t.string   "adapt_trade_cert_lang"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_assessments_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
