@@ -1,0 +1,2 @@
+class LangScoreTier < ApplicationRecord
+end

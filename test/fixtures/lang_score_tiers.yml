@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_score: MyString
+  clb: MyString
+
+two:
+  name_score: MyString
+  clb: MyString
