@@ -1,0 +1,2 @@
+class EduLevel < ApplicationRecord
+end
