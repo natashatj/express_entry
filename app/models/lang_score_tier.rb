@@ -1,7 +1,7 @@
 class LangScoreTier < ApplicationRecord
 	belongs_to :language_test
-	has_many :lang_test_datums
-	
+	has_many :lang_test_data
+
 	def self.create_lang_tier
 		#INFORMAL FRENCH
 		LangScoreTier.create language_test_id: 1, name_score: "Beginner", clb: "4 or 5"
