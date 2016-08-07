@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160806235623) do
+ActiveRecord::Schema.define(version: 20160807141728) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,14 +31,6 @@ ActiveRecord::Schema.define(version: 20160806235623) do
     t.datetime "updated_at",            null: false
     t.index ["user_id"], name: "index_assessments_on_user_id"
   end
-
-  create_table "lang_score_tiers", force: :cascade do |t|
-    t.integer  "language_test_id"
-    t.string   "name_score"
-    t.integer  "clb"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "assessments_id"
@@ -81,7 +72,6 @@ ActiveRecord::Schema.define(version: 20160806235623) do
     t.datetime "updated_at",     null: false
   end
 
-
   create_table "edu_levels", force: :cascade do |t|
     t.string   "name_of_edu_level"
     t.boolean  "tier_w_prof"
@@ -89,7 +79,15 @@ ActiveRecord::Schema.define(version: 20160806235623) do
     t.string   "number_creds"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
 
+  create_table "lang_score_tiers", force: :cascade do |t|
+    t.integer  "language_test_id"
+    t.string   "name_score"
+    t.integer  "clb"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
   end
 
   create_table "language_tests", force: :cascade do |t|
