@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20160806235622) do
+ActiveRecord::Schema.define(version: 20160806235623) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160806235622) do
     t.index ["user_id"], name: "index_assessments_on_user_id"
   end
 
-
   create_table "lang_score_tiers", force: :cascade do |t|
     t.integer  "language_test_id"
     t.string   "name_score"
@@ -42,10 +41,51 @@ ActiveRecord::Schema.define(version: 20160806235622) do
     t.datetime "updated_at",       null: false
     t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
 
+  create_table "candidates", force: :cascade do |t|
+    t.integer  "assessments_id"
+    t.integer  "edu_levels_id"
+    t.integer  "countries_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "dob"
+    t.string   "occupation"
+    t.integer  "funds"
+    t.boolean  "bac_is_pro?"
+    t.boolean  "is_user?"
+    t.text     "kids"
+    t.boolean  "frg_work_xp_one_or_two"
+    t.boolean  "frg_work_xp_three_or_more"
+    t.boolean  "cdn_xp_visited"
+    t.boolean  "cdn_xp_fr_en_studies"
+    t.boolean  "cdn_xp_ps_greater_than_one"
+    t.boolean  "cdn_xp_work_greater_than_one"
+    t.boolean  "cdn_xp_work_permit_paid"
+    t.boolean  "cdn_xp_study_perm_dli"
+    t.boolean  "cdn_xp_none"
+    t.boolean  "cdn_xp_one_yr"
+    t.boolean  "cdn_xp_one_or_more"
+    t.integer  "points"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["assessments_id"], name: "index_candidates_on_assessments_id"
+    t.index ["countries_id"], name: "index_candidates_on_countries_id"
+    t.index ["edu_levels_id"], name: "index_candidates_on_edu_levels_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.integer  "country_number"
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+
   create_table "edu_levels", force: :cascade do |t|
     t.string   "name_of_edu_level"
-    t.string   "tier_w_prof"
-    t.string   "tier_no_prof"
+    t.boolean  "tier_w_prof"
+    t.boolean  "tier_no_prof"
     t.string   "number_creds"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
