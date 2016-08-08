@@ -7,7 +7,7 @@ def create
   @candidate = Candidate.new(candidate_params)
 
   if @candidate.save
-    redirect_to "/"
+    redirect_to "/" 
   else
     render :new
   end
