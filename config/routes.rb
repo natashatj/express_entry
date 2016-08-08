@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'candiates/new'
+
+  get 'candiates/create'
+
   get 'sessions/new'
 
   get 'sessions/create'
