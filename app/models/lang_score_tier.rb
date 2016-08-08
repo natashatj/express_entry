@@ -1,4 +1,6 @@
 class LangScoreTier < ApplicationRecord
+	belongs_to :language_test
+	has_many :lang_test_data
 
 	def self.create_lang_tier
 		#INFORMAL FRENCH
