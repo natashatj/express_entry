@@ -14,8 +14,8 @@ class Candidate < ApplicationRecord
   validates :occupation, presence: true, length: { minimum: 2, maximum: 225 }
   validates :funds, numericality: { only_integer: true }, allow_blank: true
   validates :bac_is_pro?, inclusion: { in: [ true, false ] }
-  validates :kids, presence: true ##### should we make this an integer / boolean?
-  validates :frg_work_xp_none ##### this is not a column in table !!!!!!!!
+  validates :kids, presence: true
+  validates :frg_work_xp_none, inclusion: { in: [ true, false ] }
   validates :frg_work_xp_one_or_two, inclusion: { in: [ true, false ] }
   validates :frg_work_xp_three_or_more, inclusion: { in: [ true, false ] }
   validates :cdn_xp_visited, inclusion: { in: [ true, false ] }
