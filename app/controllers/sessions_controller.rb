@@ -7,14 +7,16 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to #put path
+      console.log("i pass user test")
+      redirect_to "/"
     else
+      console.log("need to sign in again")
       render :new
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to #put path
+    redirect_to "/"
   end
 end
