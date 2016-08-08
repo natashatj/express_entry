@@ -15,8 +15,6 @@ class CreateAssessments < ActiveRecord::Migration[5.0]
       t.string :adapt_ed_cdn_xp
       t.string :adapt_frg_xp_lang
       t.string :adapt_trade_cert_lang
-
-
       t.timestamps
     end
   end
