@@ -23,7 +23,7 @@ class Candidate < ApplicationRecord
   validates :cdn_xp_ps_greater_than_one, inclusion: { in: [ true, false ] }
   validates :cdn_xp_work_greater_than_one, inclusion: { in: [ true, false ] }
   validates :cdn_xp_work_permit_paid, inclusion: { in: [ true, false ] }
-  validaets :cdn_xp_study_perm_dli, inclusion: { in: [ true, false ] }
+  validates :cdn_xp_study_perm_dli, inclusion: { in: [ true, false ] }
   validates :cdn_xp_none, inclusion: { in: [ true, false ] }
   validates :cdn_xp_one_yr, inclusion: { in: [ true, false ] }
   validates :cdn_xp_one_or_more, inclusion: { in: [ true, false ] }
