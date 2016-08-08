@@ -7,7 +7,7 @@ class CandiatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
 
     if @candidate.save
-      redirect_to #path to be added?
+      redirect_to "/"
     else
       render :new
     end
