@@ -1,0 +1,2 @@
+module LanguageDataHelper
+end
