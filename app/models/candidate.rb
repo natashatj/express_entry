@@ -1,6 +1,6 @@
 class Candidate < ApplicationRecord
 
-  belongs_to :assessment
+  belongs_to :assessment, required: false
   has_many :lang_test_datum
   has_one :edu_level
 
