@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-
   get 'edu_levels/index'
+
+  get 'personal_page/home'
 
   # get 'sessions/create'
 

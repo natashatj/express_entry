@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160808182639) do
   create_table "candidates", force: :cascade do |t|
     t.integer  "assessments_id"
     t.integer  "edu_levels_id"
-    t.integer  "countries_id"
+    t.integer  "zx"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
