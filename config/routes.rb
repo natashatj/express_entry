@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  post 'personal_page/submit'
+  
   get 'edu_levels/index'
 
   get 'personal_page/home'
+
 
   # get 'sessions/create'
 

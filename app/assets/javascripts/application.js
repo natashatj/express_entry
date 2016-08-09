@@ -14,14 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(function(){
-  $(".language_dropdown").change(function(){
-    // <!-- first select and inject html in and use val -->
-    if() {
+// $(function(){
+//   $(".language_dropdown").change(function(){
+//     // <!-- first select and inject html in and use val -->
+//     if() {
 
-    }
-    else if() {
+//     }
+//     else if() {
       
-    }
-  })
-})
+//     }
+//   })
+// })
