@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'personal_page/home'
+
   # get 'sessions/create'
 
   # get 'users/new'
