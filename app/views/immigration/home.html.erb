@@ -20,10 +20,10 @@
       <%= select_tag "language_test", options_from_collection_for_select(@english_language_tests, "id", "test_evaluation"), prompt: "Select your test"%>
     <% end %>
   </div>
-    <%= select_tag "language_test" options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"),
-    :'data-remote' => 'true',
-    :'data-url' => url_for(:controller => 'ImmigrationController', :action => 'getdata'),
-    :'data-type' => 'json'
+    <%= # select_tag "language_test", options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"),
+    #:'data-remote' => 'true',
+    #:'data-url' => url_for(:controller => 'ImmigrationController', :action => 'getdata'),
+    #:'data-type' => 'json'
      %>
      
   </div> 
