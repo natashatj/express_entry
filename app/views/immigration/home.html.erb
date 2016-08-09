@@ -1,8 +1,35 @@
-<h1>Clarissa is cool</h1>
+
+<h1>Express Entry Assessment</h1>
 <main>
-<div>
+  <div>
+    <%= select_tag "edu_level", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
+  </div>
+<!-- <div>
+  <select>
+    <option>None</option>
+    <option>One year</option>
+    <option>Two or more</option>
+  </select>
+</div> -->
+  <div class="language_dropdown">
+    <%= select_tag "language_test", options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+  <div id="check">
+    <% if @french_language_tests %>
+      <%= select_tag "language_test", options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"), prompt: "Select your test"%>
+    <% elsif @english_language_tests %>
+      <%= select_tag "language_test", options_from_collection_for_select(@english_language_tests, "id", "test_evaluation"), prompt: "Select your test"%>
+    <% end %>
+  </div>
+    <%= select_tag "language_test" options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"),
+    :'data-remote' => 'true',
+    :'data-url' => url_for(:controller => 'ImmigrationController', :action => 'getdata'),
+    :'data-type' => 'json'
+     %>
+     
+  </div> 
+  <div> 
+  </div>
+</main>
 
-
-<%= select_tag "edu_level", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select something"%>
-
+<!-- put class on div, write on change jquery in application.js to repopulate dropdown according to if sratements -->
 
