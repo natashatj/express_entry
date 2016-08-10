@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'edu_levels/index'
 
-  get 'personal_page/home'
+  # get 'personal_page/home'
 
 
   # get 'sessions/create'
@@ -21,8 +21,9 @@ Rails.application.routes.draw do
 
   get 'language/test_evaluation/:id', to: 'language_tests#test_evaluation'
 
+  get 'assessments/index'
 
-
+  root 'assessments#index'
 
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:new, :create]
@@ -34,5 +35,14 @@ Rails.application.routes.draw do
   # resources :immigration do
   #   resources :language_test_dropdown 
   # end
+
+
+  # resources :assessments, only: [:new, :create]
+  # resources :candidates
+  # resources :edu_levels
+
+  resources :assessments, only: [:new, :create] do
+    resources :candidates
+  end
 
 end

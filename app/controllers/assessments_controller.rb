@@ -1,12 +1,21 @@
 class AssessmentsController < ApplicationController
+
   def new
-    @assessment = Assessment.new
-  end
+  	@assessment = Assessment.new(:user_id=>session[:user_id])
+  
+  	if @assessment.save
+  		puts @assessment.id
+  		redirect_to new_assessment_candidate_path(:assessment_id=> @assessment.id)
+  	else
+  		render :new
+  	end
+	end
 
   def create
-    @assessment = Assessment.new(assessment_params)
+    @assessment = Assessment.new
     if @assessment.save
-      redirect_to immigration_home_path
+      redirect_to 
+      puts "Success!"
     else
       render :new
     end
