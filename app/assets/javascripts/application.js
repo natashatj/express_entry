@@ -40,15 +40,4 @@ $(function(){
 
 
 //= require_tree .
-// $(function(){
-//   $(".language_dropdown").change(function(){
-//     // <!-- first select and inject html in and use val -->
-//     if() {
-
-//     }
-//     else if() {
-      
-//     }
-//   })
-// })
 

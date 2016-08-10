@@ -1,7 +1,11 @@
 class CandidatesController < ApplicationController
 def new
     @id = params["assessment_id"]
-    @candidate = Candidate.new      
+    @candidate = Candidate.new 
+    @edu_levels = EduLevel.all
+    @languages = LanguageTest.limit(2)
+    @language_tests = LanguageTest.all
+    @language_score_tiers = LangScoreTier.all     
 end
 
 def create

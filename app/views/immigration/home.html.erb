@@ -28,14 +28,7 @@
     </div>
   </div>
 </div> 
-  <div>
-    <select>
-      <option> Select score </option>
-      <% @language_score_tiers.each do |score| %>
-      <option value="<%= score.id %>" data-test="<%= @language_tests.test_evaluation%>" class="options_score"><%= score.name_score %></option>
-      <% end %>
-    </select>
-  </div>
+  
 </main>
 
 
