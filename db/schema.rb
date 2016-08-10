@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810195211) do
+ActiveRecord::Schema.define(version: 20160810210348) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 20160810195211) do
     t.integer  "language_test_id"
     t.string   "name_score"
     t.integer  "clb"
+    t.string   "skill"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "skill"
     t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
   end
 

@@ -50,7 +50,7 @@
 <% end %>
 
 
-
+<main>
   <div>
     <%= select_tag "edu_level", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
   </div>
@@ -73,8 +73,16 @@
         <% @language_tests.each do |test| %>
           <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
         <% end %>
-      </select>
+      </select><div>
+   <select>
+     <option> Select score </option>
+     <% @language_score_tiers.each do |score| %>
+     <option value="<%= score.id %>" data-test="<%= @language_tests.test_evaluation%>" class="options_score"><%= score.name_score %></option>
+     <% end %>
+   </select>
+ </div>
     </div>
   </div>
+  
 </div> 
   
