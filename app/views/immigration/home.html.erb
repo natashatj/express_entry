@@ -11,25 +11,19 @@
     <option>Two or more</option>
   </select>
 </div> -->
-  <div class="language_dropdown">
-    <%= select_tag "language_test", options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
-  <div id="check">
-    <% if @french_language_tests %>
-      <%= select_tag "language_test", options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"), prompt: "Select your test"%>
-    <% elsif @english_language_tests %>
-      <%= select_tag "language_test", options_from_collection_for_select(@english_language_tests, "id", "test_evaluation"), prompt: "Select your test"%>
-    <% end %>
-  </div>
-    <%= select_tag "language_test" options_from_collection_for_select(@french_language_tests, "id", "test_evaluation"),
-    :'data-remote' => 'true',
-    :'data-url' => url_for(:controller => 'ImmigrationController', :action => 'getdata'),
-    :'data-type' => 'json'
-     %>
+<div class="" ="language_dropdown">
+    <%= select_tag :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+  <div>
      
-  </div> 
-  <div> 
+    <select class="test_options">
+      <% @language_tests.each do |test| %>
+        <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
+      <% end %>
+    </select>
   </div>
+</div> 
 </main>
+
 
 <!-- put class on div, write on change jquery in application.js to repopulate dropdown according to if sratements -->
 

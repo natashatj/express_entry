@@ -13,15 +13,28 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+// //= require_tree .
 $(function(){
-  $(".language_dropdown").change(function(){
-    // <!-- first select and inject html in and use val -->
-    if() {
+  function updateLangageTestMenu(selectedLanguage) {
+    var $ele = $(".options_eval");
+    $ele.each(function(){
+      if ($(this).data('lang') == selectedLanguage) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#language").change(function() {
 
-    }
-    else if() {
-      
-    }
-  })
-})
+    
+    var selectedLanguage = $("#language option:selected").text();
+    updateLangageTestMenu(selectedLanguage);
+
+   });
+ })
+ 
+
+
+

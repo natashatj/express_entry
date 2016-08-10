@@ -1,0 +1,2 @@
+module LanguageTestsHelper
+end
