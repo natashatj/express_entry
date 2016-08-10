@@ -1,0 +1,2 @@
+module SummaryPageHelper
+end

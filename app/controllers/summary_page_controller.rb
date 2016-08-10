@@ -1,0 +1,2 @@
+class SummaryPageController < ApplicationController
+end
