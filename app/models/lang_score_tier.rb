@@ -17,7 +17,6 @@ class LangScoreTier < ApplicationRecord
 		LangScoreTier.create language_test_id: 2, name_score: "151-180", clb: "5"
 
 		LangScoreTier.create language_test_id: 2, name_score: "181-206", clb: "6"
-
 		LangScoreTier.create language_test_id: 2, name_score: "207-232", clb: "7"
 
 		LangScoreTier.create language_test_id: 2, name_score: "233-247", clb: "8"
@@ -132,7 +131,7 @@ class LangScoreTier < ApplicationRecord
 		LangScoreTier.create language_test_id: 4, name_score: "8", clb: "9"
 
 		LangScoreTier.create language_test_id: 4, name_score: "8.5", clb: "10"
-
+		#put other instances in console
 		#speaking
 		LangScoreTier.create language_test_id: 4, name_score: "4.0", clb: "4"
 
