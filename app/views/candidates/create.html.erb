@@ -1,14 +1,19 @@
 <h1>Candiates#create</h1>
 <p>Find me in app/views/candiates/create.html.erb</p>
 <div>
-The main candidate for this application is 
+  <% @candidate1 = @assessment.candidates.first %>
+  <% @candidate2 = @assessment.candidates.second %>
+
+  <% if @candidate1 && @candidate2 && @candidate1.points > @candidate2.points %>
+    <p>The main candidate for this application is: <% @candidate1 %></p>
+  <%else%>
+    <p>The main candidate for this application is: <% @candidate2 %></p>
+  <% end %>
+
+
   <table>
-    <% @candidate. %>
     <tr>
-      <td><%= skill.kategorien %></td>
-      <td><%= expected_qualification.sollqualifikation %></td>
-      <td><%= current_qualification.istqualifikation %></td>
+      <td>bla</td>
     </tr>
-    <% end %>
   </table>
 </div>
