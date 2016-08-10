@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
   get 'language_tests/test_evaluation'
 
+=======
+  post 'personal_page/submit'
+  
+>>>>>>> adece6a5b448b761e9e7add43a1d5551bf5a8477
   get 'edu_levels/index'
 
   get 'personal_page/home'
+
 
   # get 'sessions/create'
 

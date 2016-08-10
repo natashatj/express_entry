@@ -1,4 +1,4 @@
-<% if @candidate.errors.any? %>
+<% if @candidate && @candidate.errors.any? %>
   <div>
     <%= pluralize(@candidate.errors.count, "error") %> prevented this page from being submitted:
     <ul>
@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_for :candidate, url: 'immigration/home' do |f| %>
+<%= form_for :candidate, url: personal_page_submit_path do |f| %>
 
   <div>
     <%= f.label :first_name %>

@@ -38,3 +38,17 @@ $(function(){
 
 
 
+
+//= require_tree .
+// $(function(){
+//   $(".language_dropdown").change(function(){
+//     // <!-- first select and inject html in and use val -->
+//     if() {
+
+//     }
+//     else if() {
+      
+//     }
+//   })
+// })
+>>>>>>> adece6a5b448b761e9e7add43a1d5551bf5a8477
