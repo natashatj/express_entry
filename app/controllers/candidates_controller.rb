@@ -1,15 +1,14 @@
 class CandidatesController < ApplicationController
- def new
-  @candidate = Candidate.new
+def new
+    @id = params["assessment_id"]
+    @candidate = Candidate.new      
 end
 
 def create
   @candidate = Candidate.new(candidate_params)
 
   if @candidate.save
-    redirect_to new_candidate_path
-  else
-    render :new
+    #TODO 
   end
 end
 

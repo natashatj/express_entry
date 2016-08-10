@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  post 'personal_page/submit'
+  # post 'personal_page/submit'
   
   get 'edu_levels/index'
 
-  get 'personal_page/home'
+  # get 'personal_page/home'
 
 
   # get 'sessions/create'
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # get 'users/create'
   get 'immigration/home'
 
+  get 'assessments/index'
+
+  root 'assessments#index'
 
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:new, :create]
