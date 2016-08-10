@@ -1,2 +1,0 @@
-class SummaryPageController < ApplicationController
-end
