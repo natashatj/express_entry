@@ -56,6 +56,90 @@ $(function(){
 
    });
  })
+$(function(){
+  function updateScoreMenu(selectedTest) {
+    var $ele = $(".options_score_reading");
+    $ele.each(function(){
+      if ($(this).data('test') == +selectedTest) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#tests").change(function() {
+
+    
+    var selectedTest = $("#tests option:selected").val();
+    updateScoreMenu(selectedTest);
+    console.log(selectedTest);
+
+   });
+ })
+$(function(){
+  function updateScoreMenu(selectedTest) {
+    var $ele = $(".options_score_writing");
+    $ele.each(function(){
+      if ($(this).data('test') == +selectedTest) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#tests").change(function() {
+
+    
+    var selectedTest = $("#tests option:selected").val();
+    updateScoreMenu(selectedTest);
+    console.log(selectedTest);
+
+   });
+ })
+$(function(){
+  function updateScoreMenu(selectedTest) {
+    var $ele = $(".options_score_speaking");
+    $ele.each(function(){
+      if ($(this).data('test') == +selectedTest) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#tests").change(function() {
+
+    
+    var selectedTest = $("#tests option:selected").val();
+    updateScoreMenu(selectedTest);
+    console.log(selectedTest);
+
+   });
+ })
+$(function(){
+  function updateScoreMenu(selectedTest) {
+    var $ele = $(".options_score_listening");
+    $ele.each(function(){
+      if ($(this).data('test') == +selectedTest) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#tests").change(function() {
+
+    
+    var selectedTest = $("#tests option:selected").val();
+    updateScoreMenu(selectedTest);
+    console.log(selectedTest);
+
+   });
+ })
  
 
 
