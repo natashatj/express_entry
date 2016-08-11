@@ -2,6 +2,9 @@ class CandidatesController < ApplicationController
 
 # TODO where to route to for create on save
   def new
+    @assessment = Assessment.new(user_id: session[:user_id])
+    @candidate = @assessment.candidates.build
+    
     @id = params["assessment_id"]
     @candidate = Candidate.new 
     @edu_levels = EduLevel.all
@@ -13,9 +16,9 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
-    @assessment = Assement.find(@id)
-    @first_candidate = @assessment.candidates.first
-    @second_candidate = @assessment.candidates.second 
+    # @assessment = Assessment.find(@id)
+    # @first_candidate = @assessment.candidates.first
+    # @second_candidate = @assessment.candidates.second 
   end
 
   def create
