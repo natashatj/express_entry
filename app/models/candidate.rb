@@ -2,7 +2,7 @@ class Candidate < ApplicationRecord
 
   belongs_to :assessment, required: false
   has_many :lang_test_datum
-  has_one :edu_level
+  belongs_to :edu_level
 
   # validates :assessments_id#, presence: true
   # validates :edu_levels_id#, presence: true

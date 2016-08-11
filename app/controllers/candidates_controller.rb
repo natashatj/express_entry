@@ -2,6 +2,9 @@ class CandidatesController < ApplicationController
 
 # TODO where to route to for create on save
   def new
+    @assessment = Assessment.new(user_id: session[:user_id])
+    @candidate = @assessment.candidates.build
+    
     @id = params["assessment_id"]
     @candidate = Candidate.new 
     @edu_levels = EduLevel.all

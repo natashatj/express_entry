@@ -20,7 +20,7 @@ class AssessmentsController < ApplicationController
   def create
     @assessment = Assessment.new
     if @assessment.save
-      redirect_to assessment_path
+      redirect_to new_assessment_candidate_path(assessment_id: @assessment.id)
       puts "Success!"
     else
       render :new
