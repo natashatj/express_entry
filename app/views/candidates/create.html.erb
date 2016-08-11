@@ -1,2 +1,17 @@
-<h1>Candiates#create</h1>
+<h1>Candidates#create</h1>
 <p>Find me in app/views/candiates/create.html.erb</p>
+<div>
+
+  <% if @first_candidate && @second_candidate && @first_candidate.points > @second_candidate.points %>
+    <p>The main candidate for this application is: <% @first_candidate %></p>
+  <%else%>
+    <p>The main candidate for this application is: <% @second_candidate %></p>
+  <% end %>
+
+
+  <table>
+    <th>
+      <td>bla</td>
+    </th>
+  </table>
+</div>
