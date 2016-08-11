@@ -1,21 +1,23 @@
 class CandidatesController < ApplicationController
+# TODO where to route to for create on save
 def new
-    @id = params["assessment_id"]
-    @candidate = Candidate.new      
+    @candidate = Candidate.new 
+ 
 end
 
 def create
-  @candidate = Candidate.new(candidate_params)
+    @candidate = Candidate.new(candidate_params)
+    @assessment = Assessment.new(user_id: session[:user_id])
+  @candidate.assessments_id = @id
 
   if @candidate.save
-    #TODO 
   end
 end
-
+ 
 protected
 
 def candidate_params
-  params.require(:candidate).permit(:assessments_id, 
+  params.require(:candidate).permit(:assessment_id, 
     :edu_levels_id, 
     :countries_id, 
     :first_name, 
