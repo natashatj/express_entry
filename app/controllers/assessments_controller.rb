@@ -1,12 +1,18 @@
 class AssessmentsController < ApplicationController
 
+#TODO where to route new on save and create on save
   def new
-  	@assessment = Assessment.new(:user_id=>session[:user_id])
-  
-  	if @assessment.save
-  		puts @assessment.id
-  		redirect_to new_assessment_candidate_path(:assessment_id=> @assessment.id)
-  	else
+  	@assessment = Assessment.new(user_id: session[:user_id])
+    @candidate = @assessment.candidates.build
+    # @candidate.is_primary = true
+    # @candidate_secondary = @
+
+ 
+    if @assessment.save
+      puts @assessment.id
+    	# 	redirect_to new_assessment_candidate_path(:assessment_id=> @assessment.id)
+
+    	# else
   		render :new
   	end
 	end
@@ -14,7 +20,7 @@ class AssessmentsController < ApplicationController
   def create
     @assessment = Assessment.new
     if @assessment.save
-      redirect_to 
+      redirect_to assessment_path
       puts "Success!"
     else
       render :new
