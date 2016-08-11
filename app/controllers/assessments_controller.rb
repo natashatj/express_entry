@@ -10,9 +10,9 @@ class AssessmentsController < ApplicationController
  
     if @assessment.save
       puts @assessment.id
-    	# 	redirect_to new_assessment_candidate_path(:assessment_id=> @assessment.id)
+    		redirect_to new_assessment_candidate_path(assessment_id: @assessment.id)
 
-    	# else
+    	else
   		render :new
   	end
 	end
