@@ -1,5 +1,6 @@
 <h1>Candidates#create</h1>
 <p>Find me in app/views/candiates/create.html.erb</p>
+<h2></h2>
 <div>
 
   <% if @first_candidate && @second_candidate && @first_candidate.points > @second_candidate.points %>
@@ -8,10 +9,31 @@
     <p>The main candidate for this application is: <% @second_candidate %></p>
   <% end %>
 
-
   <table>
-    <th>
-      <td>bla</td>
-    </th>
+    <tr>
+      <th rowspan="4">Personal information</th>
+      <td><%= @assessment.candidate.first_name %></td>
+      <td><%= @assessment.candidate.middle_name %></td>
+      <td><%= @assessment.candidate.last_name %></td>
+      <td><%= @assessment.candidate.age %></td>
+    </tr>
+    <tr>
+      <th rowspan="3">Education and language testing</th>
+      <td><%= @assessment.candidate.id %></td>
+      <td><%= @assessment.candidate.id %></td>
+      <td><%= @assessment.candidate.id %></td>
+    </tr>
+    <tr>
+      <th rowspan="3">Work experience</th>
+      <td><%= @assessment.candidate.occupation %></td>
+      <td><%= @assessment.candidate.id %></td>
+      <td><%= @assessment.candidate.id %></td>
+    </tr>
+    <tr>
+      <th rowspan="3">Total number of points</th>
+      <td>------</td>
+      <td>------</td>
+      <td>------</td>
+    </tr>
   </table>
 </div>

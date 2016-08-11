@@ -26,6 +26,11 @@ class CandidatesController < ApplicationController
     if @candidate.save
     end
   end
+
+  def age(dob)
+    today = Date.today
+    age = d.year - dob.year - (d > today ? 1 : 0)
+  end
    
   protected
 
