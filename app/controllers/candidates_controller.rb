@@ -13,9 +13,9 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
-    @assessment = Assement.find(@id)
-    @first_candidate = @assessment.candidates.first
-    @second_candidate = @assessment.candidates.second 
+    # @assessment = Assessment.find(@id)
+    # @first_candidate = @assessment.candidates.first
+    # @second_candidate = @assessment.candidates.second 
   end
 
   def create
