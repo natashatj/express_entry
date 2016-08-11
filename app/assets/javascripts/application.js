@@ -34,21 +34,31 @@ $(function(){
 
    });
  })
+
+$(function(){
+  function updateScoreMenu(selectedTest) {
+    var $ele = $(".options_score");
+    $ele.each(function(){
+      if ($(this).data('test') == +selectedTest) {
+       $(this).show();
+      } 
+     else {
+       $(this).hide();
+     }
+   })
+  }
+   $("#tests").change(function() {
+
+    
+    var selectedTest = $("#tests option:selected").val();
+    updateScoreMenu(selectedTest);
+    console.log(selectedTest);
+
+   });
+ })
  
 
 
 
-
 //= require_tree .
-// $(function(){
-//   $(".language_dropdown").change(function(){
-//     // <!-- first select and inject html in and use val -->
-//     if() {
-
-//     }
-//     else if() {
-      
-//     }
-//   })
-// })
 
