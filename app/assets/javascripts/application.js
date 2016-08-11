@@ -52,6 +52,7 @@ $(function(){
     
     var selectedTest = $("#tests option:selected").val();
     updateScoreMenu(selectedTest);
+    console.log(selectedTest);
 
    });
  })

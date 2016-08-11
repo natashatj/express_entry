@@ -76,13 +76,47 @@
       </select>
       <div>
    <select class="score_ranges">
+     <option> Select score </option>
+     <% @reading_scores.each do |score| %>
+     <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score"><%= score.name_score %></option>
+     <% end %>
+   </select>
+ </div>
+ <div>
+   <select class="score_ranges">
      <option> Select reading score </option>
-     <% @language_score_tiers.each do |score| %>
+     <% @reading_scores.each do |score| %>
      <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score"><%= score.name_score %></option>
      <% end %>
    </select>
  </div>
     </div>
+    <div>
+   <select class="score_ranges">
+     <option> Select writing score </option>
+     <% @writing_scores.each do |score| %>
+     <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score"><%= score.name_score %></option>
+     <% end %>
+   </select>
+ </div>
+  </div>
+  <div>
+   <select class="score_ranges">
+     <option> Select speaking score </option>
+     <% @speaking_scores.each do |score| %>
+     <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score"><%= score.name_score %></option>
+     <% end %>
+   </select>
+ </div>
+ <div>
+   <select class="score_ranges">
+     <option> Select listening score </option>
+     <% @listening_scores.each do |score| %>
+     <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score"><%= score.name_score %></option>
+     <% end %>
+   </select>
+ </div>
+
   </div>
 
 </div> 

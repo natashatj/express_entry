@@ -7,6 +7,10 @@ def new
     @language_tests = LanguageTest.all
     @language_score_tiers = LangScoreTier.all 
     @name_scores = LanguageTest.first.lang_score_tiers
+    @reading_scores = LangScoreTier.all.where(skill: "reading")
+    @writing_scores = LangScoreTier.all.where(skill: "writing")
+    @speaking_scores = LangScoreTier.all.where(skill: "speaking")
+    @listening_scores = LangScoreTier.all.where(skill: "listening")
 
 end
 
