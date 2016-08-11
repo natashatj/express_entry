@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810195211) do
+ActiveRecord::Schema.define(version: 20160811032207) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -33,9 +33,8 @@ ActiveRecord::Schema.define(version: 20160810195211) do
   end
 
   create_table "candidates", force: :cascade do |t|
-    t.integer  "assessments_id"
-    t.integer  "edu_levels_id"
-    t.integer  "countries_id"
+    t.integer  "edu_level_id"
+    t.integer  "country_id"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
@@ -60,9 +59,10 @@ ActiveRecord::Schema.define(version: 20160810195211) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.boolean  "frg_work_xp_none"
-    t.index ["assessments_id"], name: "index_candidates_on_assessments_id"
-    t.index ["countries_id"], name: "index_candidates_on_countries_id"
-    t.index ["edu_levels_id"], name: "index_candidates_on_edu_levels_id"
+    t.integer  "assessment_id"
+    t.index ["assessment_id"], name: "index_candidates_on_assessment_id"
+    t.index ["country_id"], name: "index_candidates_on_country_id"
+    t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 20160810195211) do
     t.integer  "language_test_id"
     t.string   "name_score"
     t.integer  "clb"
+    t.string   "skill"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "skill"
     t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
   end
 

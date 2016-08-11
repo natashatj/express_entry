@@ -2,8 +2,8 @@ class CreateCandidates < ActiveRecord::Migration[5.0]
   def change
     create_table :candidates do |t|
       t.references :assessments
-      t.references :edu_levels
-      t.references :countries
+      t.references :edu_level
+      t.references :country
       t.string :first_name
       t.string :middle_name
       t.string :last_name
