@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 // //= require_tree .
+//= require bootstrap.min.js
 $(function(){
   function updateLangageTestMenu(selectedLanguage) {
     var $ele = $(".options_eval");
