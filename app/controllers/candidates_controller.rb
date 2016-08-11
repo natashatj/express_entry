@@ -5,7 +5,9 @@ def new
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
-    @language_score_tiers = LangScoreTier.all     
+    @language_score_tiers = LangScoreTier.all 
+    @name_scores = LanguageTest.first.lang_score_tiers
+
 end
 
 def create
