@@ -5,7 +5,10 @@ def new
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
-    @language_score_tiers = LangScoreTier.all     
+    @language_score_tiers = LangScoreTier.all   
+    @assessment = Assement.find(@id)
+        @first_candidate = @assessment.candidates.first
+    @second_candidate = @assessment.candidates.second 
 end
 
 def create
