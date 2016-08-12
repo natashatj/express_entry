@@ -2,12 +2,13 @@ class CandidatesController < ApplicationController
  
 # TODO where to route to for create on save
   def new
+
     # p params
+
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
     @language_score_tiers = LangScoreTier.all 
-    @name_scores = LanguageTest.first.lang_score_tiers
     @reading_scores = LangScoreTier.all.where(skill: "reading")
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
