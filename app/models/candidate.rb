@@ -38,5 +38,4 @@ class Candidate < ApplicationRecord
   #     # errors.add(:dob, "You must be at least 18 years of age in order to qualify for Blake Sieders And Associates services") if dob < (Date.today - 18.years.ago)
   #   end
   # end
-  
 end

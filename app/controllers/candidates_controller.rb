@@ -54,6 +54,27 @@ class CandidatesController < ApplicationController
       :cdn_xp_one_or_more) 
   end
 
+  @candidate.points = 0
+  #best way to write out methods
+  #how we relate to candidate
+  #how we store the points (variable or directly in db (breakdown is in assessment table))
+  #how to get methods triggered once button is clicked
+  #method that checks who out of the two candidates has higher points, makes that one primary
+  #check if its second person submitting form, compare then and then update table
+  #if want to share method, put it in application controller
+
+  def self.age
+      #get key for particular value (can put in csv and read from it)
+      #hash instead of if and else, go through value of the hash
+      #do update route
+      points_for age = {
+        34: 75,
+
+      }
+
+  end
+
+
 end
 
 
