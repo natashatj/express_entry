@@ -14,9 +14,11 @@ class CandidatesController < ApplicationController
   end
 
   def create
+
     @id = params["assessment_id"]
     @assessment = Assessment.find(@id)
     @candidate = @assessment.candidates.new(candidate_params)
+    # binding.pry
     if @candidate.save
       puts "Yay"
     else
@@ -28,8 +30,8 @@ class CandidatesController < ApplicationController
 
   def candidate_params
     params.require(:candidate).permit(:assessment_id, 
-      :edu_levels_id, 
-      :countries_id, 
+      :edu_level_id, 
+      :country_id, 
       :first_name, 
       :middle_name, 
       :last_name, 
@@ -51,6 +53,7 @@ class CandidatesController < ApplicationController
       :cdn_xp_one_yr, 
       :cdn_xp_one_or_more) 
   end
+
 end
 
 
