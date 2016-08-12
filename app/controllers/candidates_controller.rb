@@ -1,12 +1,8 @@
 class CandidatesController < ApplicationController
-
+ 
 # TODO where to route to for create on save
   def new
-    @assessment = Assessment.new(user_id: session[:user_id])
-    @candidate = @assessment.candidates.build
-    
-    @id = params["assessment_id"]
-    @candidate = Candidate.new 
+    # p params
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
@@ -16,17 +12,24 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
-    # @assessment = Assessment.find(@id)
     # @first_candidate = @assessment.candidates.first
     # @second_candidate = @assessment.candidates.second 
   end
 
   def create
-    @candidate = Candidate.new(candidate_params)
-    @assessment = Assessment.new(user_id: session[:user_id])
-    @candidate.assessments_id = @id
-
+    # @candidate = Candidate.new(candidate_params)
+    # @assessment = Assessment.new(user_id: session[:user_id])
+    # assessment 
+    @id = params["assessment_id"]
+    @assessment = Assessment.find(@id)
+    @candidate = @assessment.candidates.new(candidate_params)
+    @candidate.edu_level_id = 1
+    # @candidate.country_id = 1
+    binding.pry
     if @candidate.save
+      puts "Yay"
+    else
+      render :new
     end
   end
    
