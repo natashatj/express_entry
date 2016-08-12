@@ -4,14 +4,13 @@ class CandidatesController < ApplicationController
   def new
     @assessment = Assessment.new(user_id: session[:user_id])
     @candidate = @assessment.candidates.build
-    
+
     @id = params["assessment_id"]
     @candidate = Candidate.new 
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
     @language_score_tiers = LangScoreTier.all 
-    @name_scores = LanguageTest.first.lang_score_tiers
     @reading_scores = LangScoreTier.all.where(skill: "reading")
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
