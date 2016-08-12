@@ -3,13 +3,33 @@
   <head>
     <title>ExpressEntry</title>
     <%= csrf_meta_tags %>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap --> 
+
+
+    </head>
 
   <body>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+  <section class="content-section video-section">
+    <div class="pattern-overlay">
+    <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=fdJc1_IBKJA',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}"></a>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= render 'layouts/menu' %>
+            <%= yield %>
+            <%= render 'layouts/footer' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
+
 </html>

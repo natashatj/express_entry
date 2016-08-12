@@ -1,10 +1,12 @@
-<footer>
-  <small>
-  <% if !session[:user_id].nil? %><!-- not the admin -->
-      Signed in as <%= current_user.email %> 
-      (<%= link_to "Log out", session_path(:id=>session[:user_id]), method: :delete %>)
-    <% else %>
-    <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>
-  </small>
+<footer class="footer">
+  <div class="container">
+    <small>
+    <% if !session[:user_id].nil? %><!-- not the admin -->
+        Signed in as <%= current_user.email %> 
+        (<%= link_to "Log out", session_path(:id=>session[:user_id]), method: :delete %>)
+      <% else %>
+      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+    </small>
+  </div>
 </footer>

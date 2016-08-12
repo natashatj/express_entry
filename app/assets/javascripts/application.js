@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require tether
 //= require jquery_ujs
 //= require turbolinks
 // //= require_tree .
-//= require bootstrap.min.js
+
 $(function(){
   function updateLangageTestMenu(selectedLanguage) {
     var $ele = $(".options_eval");
@@ -142,7 +143,11 @@ $(function(){
    });
  })
  
+$(document).ready(function () {
 
+    $(".player").mb_YTPlayer();
+
+});
 
 
 //= require_tree .
