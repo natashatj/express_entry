@@ -142,14 +142,5 @@ $(function(){
 });
 
 
-// Home Page Video
-$(document).ready(function () {
-
-    $(".player").mb_YTPlayer();
-
-  });
-})
-
-
 // // // = require_tree .
 
