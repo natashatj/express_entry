@@ -10,21 +10,21 @@ class CreateCandidates < ActiveRecord::Migration[5.0]
       t.date :dob
       t.string :occupation
       t.integer :funds
-      t.boolean :bac_is_pro?
-      t.boolean :is_user?
+      t.boolean :bac_is_pro?, default: false
+      t.boolean :is_user?, default: false
       t.text :kids
-      t.boolean :frg_work_xp_one_or_two
-      t.boolean :frg_work_xp_three_or_more
-      t.boolean :cdn_xp_visited
-      t.boolean :cdn_xp_fr_en_studies
-      t.boolean :cdn_xp_ps_greater_than_one
-      t.boolean :cdn_xp_work_greater_than_one
-      t.boolean :cdn_xp_work_permit_paid
-      t.boolean :cdn_xp_study_perm_dli
-      t.boolean :cdn_xp_none
-      t.boolean :cdn_xp_one_yr
-      t.boolean :cdn_xp_one_or_more
-      t.integer :points
+      t.boolean :frg_work_xp_one_or_two, default: false
+      t.boolean :frg_work_xp_three_or_more, default: false
+      t.boolean :cdn_xp_visited, default: false
+      t.boolean :cdn_xp_fr_en_studies, default: false
+      t.boolean :cdn_xp_ps_greater_than_one, default: false
+      t.boolean :cdn_xp_work_greater_than_one, default: false
+      t.boolean :cdn_xp_work_permit_paid, default: false
+      t.boolean :cdn_xp_study_perm_dli, default: false
+      t.boolean :cdn_xp_none, default: false
+      t.boolean :cdn_xp_one_yr, default: false
+      t.boolean :cdn_xp_one_or_more, default: false
+      t.integer :points, default: 0
 
       t.timestamps
     end
