@@ -21,20 +21,9 @@ class CandidatesController < ApplicationController
     @candidate = @assessment.candidates.new(candidate_params)
     
     if @candidate.save
-
-      @age_points_married = 10
-      married_age_points =  @age_points_married
-      @candidate.points += married_age_points
+      @candidate_age = calculate_age(@candidate.dob)
+      @candidate_age_points = calculate_points_for_age(@candidate_age)
       binding.pry
-
-      # @age_points_married.fetch(calculate_age(@candidate.dob))
-      # married_age_points =  @age_points_married
-      # binding.pry
-      # @candidate.points += married_age_points
-      # @candidate_age = calculate_age(@candidate.dob)
-      # @candidate_age_points = calculate_points_for_age(@candidate_age)
-      # @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level.name_of_edu_level)
-
     else
       render :new
     end
@@ -54,6 +43,7 @@ class CandidatesController < ApplicationController
       :funds,
       :bac_is_pro?, 
       :kids, 
+      :is_married,
       :frg_work_xp_none, 
       :frg_work_xp_one_or_two, 
       :frg_work_xp_three_or_more, 
@@ -68,46 +58,83 @@ class CandidatesController < ApplicationController
       :cdn_xp_one_or_more) 
   end
 
-    # @age_points_married= {
-    #     20..29 => 100,
-    #     19 => 95,
-    #     30 => 95,
-    #     18 => 90,
-    #     31 => 90,
-    #     32 => 85,
-    #     33 => 80,
-    #     34 => 75,
-    #     35 => 70,
-    #     36 => 65,
-    #     37 => 60,
-    #     38 => 55,
-    #     39 => 50,
-    #     40 => 45,
-    #     41 => 35,
-    #     42 => 25,
-    #     43 => 15,
-    #     44 => 5
-    #   }
-
   def calculate_age(dob)
     a = dob
     b = Date.today
 
     age = b.year - a.year
   end
+  def calculate_points_for_age(age)
+  @age_points_married = {
+        20 => 100,
+        21 => 100,
+        22 => 100,
+        23 => 100,
+        24 => 100,
+        25 => 100,
+        26 => 100,
+        27 => 100,
+        28 => 100,
+        29 => 100,
+        19 => 95,
+        30 => 95,
+        18 => 90,
+        31 => 90,
+        32 => 85,
+        33 => 80,
+        34 => 75,
+        35 => 70,
+        36 => 65,
+        37 => 60,
+        38 => 55,
+        39 => 50,
+        40 => 45,
+        41 => 35,
+        42 => 25,
+        43 => 15,
+        44 => 5
+      }
+       @age_points_single = {
+        20 => 110,
+        21 => 110,
+        22 => 110,
+        23 => 110,
+        24 => 110,
+        25 => 110,
+        26 => 110,
+        27 => 110,
+        28 => 110,
+        29 => 110,
+        19 => 105,
+        30 => 105,
+        18 => 99,
+        31 => 99,
+        32 => 94,
+        33 => 88,
+        34 => 83,
+        35 => 77,
+        36 => 72,
+        37 => 66,
+        38 => 61,
+        39 => 55,
+        40 => 50,
+        41 => 39,
+        42 => 28,
+        43 => 17,
+        44 => 6
+       }
 
-  # def calculate_points_for_age(age)
-  #   # if candidate.is_married? 
+      if @candidate.is_married
+        married_age_points =  @age_points_married.fetch(age)
+        @candidate.points += married_age_points
+      elsif !@candidate.is_married
+        single_age_points = @age_points_single.fetch(age)
+        @candidate.points += single_age_points
+      end
+    end
 
-  #   @age_points_married = 10
-  #     married_age_points =  @age_points_married
-  #     binding.pry
-  #     @candidate.points += married_age_points
-  #   # elsif !candidate.is_married?
-  #   #   single_age_points = @age_points_single.fetch(age)
-  #   #   candidate.points += single_age_points
-  #   # end
-  # end
+  
+ 
 
   # def calculate_points_for_edu(edu_level)
   #   # if candidate.is_married?
