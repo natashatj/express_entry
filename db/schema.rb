@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811032207) do
+ActiveRecord::Schema.define(version: 20160813195852) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,25 +41,27 @@ ActiveRecord::Schema.define(version: 20160811032207) do
     t.date     "dob"
     t.string   "occupation"
     t.integer  "funds"
-    t.boolean  "bac_is_pro?"
-    t.boolean  "is_user?"
+    t.boolean  "bac_is_pro?",                  default: false
+    t.boolean  "is_user?",                     default: false
     t.text     "kids"
-    t.boolean  "frg_work_xp_one_or_two"
-    t.boolean  "frg_work_xp_three_or_more"
-    t.boolean  "cdn_xp_visited"
-    t.boolean  "cdn_xp_fr_en_studies"
-    t.boolean  "cdn_xp_ps_greater_than_one"
-    t.boolean  "cdn_xp_work_greater_than_one"
-    t.boolean  "cdn_xp_work_permit_paid"
-    t.boolean  "cdn_xp_study_perm_dli"
-    t.boolean  "cdn_xp_none"
-    t.boolean  "cdn_xp_one_yr"
-    t.boolean  "cdn_xp_one_or_more"
-    t.integer  "points"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "frg_work_xp_none"
+    t.boolean  "frg_work_xp_one_or_two",       default: false
+    t.boolean  "frg_work_xp_three_or_more",    default: false
+    t.boolean  "cdn_xp_visited",               default: false
+    t.boolean  "cdn_xp_fr_en_studies",         default: false
+    t.boolean  "cdn_xp_ps_greater_than_one",   default: false
+    t.boolean  "cdn_xp_work_greater_than_one", default: false
+    t.boolean  "cdn_xp_work_permit_paid",      default: false
+    t.boolean  "cdn_xp_study_perm_dli",        default: false
+    t.boolean  "cdn_xp_none",                  default: false
+    t.boolean  "cdn_xp_one_yr",                default: false
+    t.boolean  "cdn_xp_one_or_more",           default: false
+    t.integer  "points",                       default: 0
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.boolean  "frg_work_xp_none",             default: false
     t.integer  "assessment_id"
+    t.boolean  "is_married",                   default: false
+    t.boolean  "trade_cert",                   default: false
     t.index ["assessment_id"], name: "index_candidates_on_assessment_id"
     t.index ["country_id"], name: "index_candidates_on_country_id"
     t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id"

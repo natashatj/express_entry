@@ -9,6 +9,7 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
+
     # @first_candidate = @assessment.candidates.first
     # @second_candidate = @assessment.candidates.second 
   end
@@ -18,9 +19,11 @@ class CandidatesController < ApplicationController
     @id = params["assessment_id"]
     @assessment = Assessment.find(@id)
     @candidate = @assessment.candidates.new(candidate_params)
-    # binding.pry
+    
     if @candidate.save
-      puts "Yay"
+      @candidate_age = calculate_age(@candidate.dob)
+      @candidate_age_points = calculate_points_for_age(@candidate_age)
+      binding.pry
     else
       render :new
     end
@@ -40,6 +43,7 @@ class CandidatesController < ApplicationController
       :funds,
       :bac_is_pro?, 
       :kids, 
+      :is_married,
       :frg_work_xp_none, 
       :frg_work_xp_one_or_two, 
       :frg_work_xp_three_or_more, 
@@ -54,7 +58,97 @@ class CandidatesController < ApplicationController
       :cdn_xp_one_or_more) 
   end
 
-  @candidate.points = 0
+  def calculate_age(dob)
+    a = dob
+    b = Date.today
+
+    age = b.year - a.year
+  end
+  def calculate_points_for_age(age)
+  @age_points_married = {
+        20 => 100,
+        21 => 100,
+        22 => 100,
+        23 => 100,
+        24 => 100,
+        25 => 100,
+        26 => 100,
+        27 => 100,
+        28 => 100,
+        29 => 100,
+        19 => 95,
+        30 => 95,
+        18 => 90,
+        31 => 90,
+        32 => 85,
+        33 => 80,
+        34 => 75,
+        35 => 70,
+        36 => 65,
+        37 => 60,
+        38 => 55,
+        39 => 50,
+        40 => 45,
+        41 => 35,
+        42 => 25,
+        43 => 15,
+        44 => 5
+      }
+       @age_points_single = {
+        20 => 110,
+        21 => 110,
+        22 => 110,
+        23 => 110,
+        24 => 110,
+        25 => 110,
+        26 => 110,
+        27 => 110,
+        28 => 110,
+        29 => 110,
+        19 => 105,
+        30 => 105,
+        18 => 99,
+        31 => 99,
+        32 => 94,
+        33 => 88,
+        34 => 83,
+        35 => 77,
+        36 => 72,
+        37 => 66,
+        38 => 61,
+        39 => 55,
+        40 => 50,
+        41 => 39,
+        42 => 28,
+        43 => 17,
+        44 => 6
+       }
+
+      if @candidate.is_married
+        married_age_points =  @age_points_married.fetch(age)
+        @candidate.points += married_age_points
+      elsif !@candidate.is_married
+        single_age_points = @age_points_single.fetch(age)
+        @candidate.points += single_age_points
+      end
+    end
+
+  
+ 
+
+  # def calculate_points_for_edu(edu_level)
+  #   # if candidate.is_married?
+  #     married_edu_points = @edu_points_married.fetch(edu_level)
+  #     @candidate.points += married_edu_points
+  #   # elsif !candidate.is_married?
+  #   #   single_edu_points = @edu_points_single.fetch(edu_level)
+  #   #   candidate.points += single_edu_points
+  #   # end
+  # end
+     
+
+
+
   #best way to write out methods
   #how we relate to candidate
   #how we store the points (variable or directly in db (breakdown is in assessment table))
@@ -63,18 +157,175 @@ class CandidatesController < ApplicationController
   #check if its second person submitting form, compare then and then update table
   #if want to share method, put it in application controller
 
-  def self.age
+
+ 
+=======
+  #once candidates have total points compiled and candidate with highest points has been determined decrease other candidate's points based on the alocated spouse points.
+  #add trade cert column to candidates, default to false boolean and default all other booleans to false
+
       #get key for particular value (can put in csv and read from it)
       #hash instead of if and else, go through value of the hash
       #do update route
-      points_for age = {
-        34: 75,
+     
 
-      }
+      # @age_points_single = {
+      #   20..29 => 110,
+      #   19 => 105,
+      #   30 => 105,
+      #   18 => 99,
+      #   31 => 99,
+      #   32 => 94,
+      #   33 => 88,
+      #   34 => 83,
+      #   35 => 77,
+      #   36 => 72,
+      #   37 => 66,
+      #   38 => 61,
+      #   39 => 55,
+      #   40 => 50,
+      #   41 => 39,
+      #   42 => 28,
+      #   43 => 17,
+      #   44 => 6
+      # }
+  
 
-  end
+      # @edu_points_married = {
+      #   "High School": 28,
+      #   "One year Post Secondary": 84,
+      #   "Two year Post Secondary": 91,
+      #   "Bachelor's": 112,
+      #   "Bachelor's and Post Grad": 119,
+      #   "Master's or Prof Bach": 126,
+      #   "PhD": 140
+
+      # }
+
+      # @edu_points_single = {
+      #   "High School": 30,
+      #   "One year Post Secondary": 90,
+      #   "Two year Post Secondary": 98,
+      #   "Bachelor's": 120,
+      #   "Bachelor's or Post Grad": 128,
+      #   "Master's or Prof Bach": 135,
+      #   "PhD": 150
+      # }
+
+
+    # def first_language_points
+
+    #   first_language_points_married = {
+    #     4: 6,
+    #     5: 6,
+    #     6: 8,
+    #     7: 16,
+    #     8: 22,
+    #     9: 29,
+    #     10: 32
+    #   }
+
+    #    first_language_points_single = {
+    #     4: 6,
+    #     5: 6,
+    #     6: 9,
+    #     7: 17,
+    #     8: 23,
+    #     9: 31,
+    #     10: 34
+    #   }  
+    # end
+
+    # def second_language_points
+
+    #   second_language_points_married_and_single = {
+    #     5: 1,
+    #     6: 1,
+    #     7: 3,
+    #     8: 3,
+    #     9: 6,
+    #     10: 6
+    #   }
+
+    # end
+
+    # def cdn_work
+    #   cdn_work_married = {
+
+    #     1: 35,
+    #     2: 46,
+    #     3: 56,
+    #     4: 63,
+    #     5: 70
+    #   }
+
+    #    cdn_work_single = {
+
+    #     1: 40,
+    #     2: 53,
+    #     3: 64,
+    #     4: 72,
+    #     5: 80
+    #   }
+      
+    # end
+
+    # def adaptability_ed_lang
+
+    #   if candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+    #     candidate.points += 13
+    #   elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
+    #     candidate.points += 25
+    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+    #     candidate.points += 25
+    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
+    #     candidate.points += 50 
+    #   end 
+    # end
+    
+    # def adaptability_ed_cdn_xp
+    #   if candidate.edu_level.cred == 1 && candidate.cdn_xp == 1
+    #     candidate.points += 13
+    #   elsif candidate.edu_level.cred == 1 && candidate.cdn_xp >= 2
+    #     candidate.points += 25
+    #   elsif candidate.edu_level.cred == 2 && candidate.cdn_xp >= 2
+    #     candidate.points += 25
+    #   end
+    # end
+
+    # def adaptability_frg_xp_and_lang
+    #   if (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
+    #     candidate.points += 13
+    #   elsif (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data >= 9)
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data >= 9)
+    #     candidate.points += 50
+    #   end
+    # end
+
+    # def adaptability_frg_xp_and_cdn_xp
+    #   if (candidate.frg_xp == 1 || candidate.frg_xp == 2) && candidate.cdn_xp == 1
+    #     candidate.points += 13
+    #   elsif (candidate.frg_xp == 1 || candidate.frg_xp == 2) && candidate.cdn_xp >= 2
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && candidate.cdn_xp == 1
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && candidate.cdn_xp >= 2
+    #     candidate.points += 50
+    #   end
+
+    # end
+
+ 
+
 
 
 end
+
+
+
+
+
 
 
