@@ -94,5 +94,10 @@ hr:before {
   color: #750000;
 }
 
-
+.left-side-form{
+  text-align: left;
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.5em;
+  overflow: auto;
+}
 
