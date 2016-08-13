@@ -159,7 +159,6 @@ class CandidatesController < ApplicationController
 
 
  
-=======
   #once candidates have total points compiled and candidate with highest points has been determined decrease other candidate's points based on the alocated spouse points.
   #add trade cert column to candidates, default to false boolean and default all other booleans to false
 
