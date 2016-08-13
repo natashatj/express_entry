@@ -148,5 +148,19 @@ $(window).resize(function(){
   var w = $(window).width(), h = $(window).height()  
   $('#video-block video').css({height: ''+h+'',width: ''+w+''});
 });
+
+//render the second form if application has two candidates
+// var spousePresent = 
+$( ".left-side-form" ).clone().appendTo( ".personal-forms" );
+
 // // // = require_tree .
+
+
+
+
+
+
+
+
+
 
