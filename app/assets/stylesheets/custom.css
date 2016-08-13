@@ -8,7 +8,7 @@
   min-height: 100%;
   width: initial;   
   height: auto;  
-  z-index: 1;
+  z-index: -1;
   margin: 0 auto;
   object-fit: cover;
   padding: 0;
@@ -29,3 +29,45 @@ footer {
 body{
   text-align: center;
 }
+
+.front-page-title{
+  margin-top: 5%;
+  color: #2C3B63;
+}
+
+.front-page-title h1{
+  /*font-family: 'Bungee Shade', cursive;*/
+  font-family: 'Shrikhand', cursive;
+  font-size: 6em;
+}
+
+.front-page-title h2{
+  font-family: 'Sansita One', cursive;
+}
+
+.start-assessment{
+  margin-top: 10%;
+  border: 7px solid;
+  background: transparent;
+}
+
+.start-assessment p{
+  color: navy;
+  padding: 30px;
+  font-size: 2em;
+}
+.start-assessment p a{
+  text-decoration: none;
+}
+.start-assessment p a:hover{
+  color: navy;
+}
+
+
+
+
+
+
+
+
+
