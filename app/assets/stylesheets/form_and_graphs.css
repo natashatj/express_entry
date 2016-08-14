@@ -1,0 +1,16 @@
+
+.graphs{
+  position: fixed;
+  top: 100;
+  right: 0;
+}.left-side-form{
+  text-align: left;
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.5em;
+  overflow: auto;
+}
+
+.personal-forms{
+  padding-top: 70px;
+  padding-bottom: 100px;
+}

@@ -1,0 +1,46 @@
+
+/*main navigation*/
+.front-page-title{
+  margin-top: 5%;
+  color: #750000;
+}
+
+.front-page-title h1{
+  font-family: 'Lobster', cursive;
+  font-size: 6em;
+  letter-spacing: 4px;
+}
+
+.front-page-title h2{
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: white;
+  font-size: 2em;
+  letter-spacing: 6px;
+}
+
+.start-assessment{
+  margin-bottom: 100px;
+  margin-top: 10%;
+  margin-left: 100px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 4px solid;
+  background: transparent;
+}
+.start-assessment p{
+  font-size: 2em;
+}
+.start-assessment p a{
+  font-weight: bolder;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-decoration: none;
+  color: #750000;
+}
+.start-assessment p a:hover{
+  color: black;
+}
+img.maple{
+  width: 7%;
+  height: 7%;
+}
