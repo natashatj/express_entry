@@ -17,6 +17,8 @@
 /*main navigation*/
 .navbar{
   width: 100%;
+  top: 0;
+  position: fixed;
 }
 /*footer*/
 footer {
@@ -98,6 +100,7 @@ hr:before {
   text-align: left;
   font-family: 'Cabin', sans-serif;
   font-size: 1.5em;
+  z-index: -1;
   overflow: auto;
 }
 
