@@ -3,10 +3,10 @@
   position: absolute;
   display: block;  
   right: 0; 
-  bottom: 0;
+  bottom: -50;
   min-width: 100%; 
   min-height: 100%;
-  width: initial;   
+  width: auto;   
   height: auto;  
   z-index: -1;
   margin: 0 auto;
@@ -19,6 +19,7 @@
   width: 100%;
   top: 0;
   position: fixed;
+  z-index: 1;
 }
 /*footer*/
 footer {
@@ -42,69 +43,65 @@ body{
 .front-page-title h1{
   font-family: 'Lobster', cursive;
   font-size: 6em;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
 }
 
 .front-page-title h2{
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
   color: white;
-  letter-spacing: 3px;
+  font-size: 2em;
+  letter-spacing: 6px;
 }
 
 .start-assessment{
   margin-bottom: 100px;
   margin-top: 10%;
-  border: 7px solid;
+  margin-left: 100px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 4px solid;
   background: transparent;
 }
 
 .start-assessment p{
-  padding: 30px;
   font-size: 2em;
 }
 .start-assessment p a{
   font-weight: bolder;
-  font-family: 'Cabin', sans-serif;  
+  font-family: 'Open Sans Condensed', sans-serif;
   text-decoration: none;
   color: #750000;
 }
 .start-assessment p a:hover{
   color: black;
 }
-hr { 
-  height: 30px; 
-  border-style: solid; 
-  border-color: black;
-  border-width: 1px 0 0 0; 
-  border-radius: 20px; 
-  width: 45%;
-} 
-hr:before { 
-  display: block; 
-  content: ""; 
-  height: 30px; 
-  margin-top: -31px; 
-  border-style: solid; 
-  border-color: #8c8b8b; 
-  border-width: 0 0 1px 0; 
-  border-radius: 20px; 
-}
 
 .special-btn{
   font-family: 'Lobster', cursive;
   font-size: 2.2em;
   color: #750000;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: #014c8c;
+  text-decoration: none;
 }
 
 .left-side-form{
   text-align: left;
   font-family: 'Cabin', sans-serif;
   font-size: 1.5em;
-  /*z-index: -1;*/
   overflow: auto;
 }
 
 .personal-forms{
-  padding-top: 50px;
+  padding-top: 70px;
   padding-bottom: 100px;
+}
+
+img.maple{
+  width: 9%;
+  height: 9%;
 }
