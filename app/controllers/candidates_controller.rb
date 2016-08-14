@@ -26,7 +26,7 @@ class CandidatesController < ApplicationController
        # binding.pry
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
       binding.pry
-      @candidate_first_language = calculate_points_for_language(@candidate)
+      # @candidate_first_language = calculate_points_for_language(@candidate)
        
     
     else
