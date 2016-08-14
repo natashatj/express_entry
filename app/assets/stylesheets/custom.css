@@ -100,7 +100,7 @@ hr:before {
   text-align: left;
   font-family: 'Cabin', sans-serif;
   font-size: 1.5em;
-  z-index: -1;
+  /*z-index: -1;*/
   overflow: auto;
 }
 
