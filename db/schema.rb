@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20160814000038) do
+=======
 ActiveRecord::Schema.define(version: 20160813225841) do
+>>>>>>> styling
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -53,8 +57,6 @@ ActiveRecord::Schema.define(version: 20160813225841) do
     t.boolean  "cdn_xp_work_permit_paid",      default: false
     t.boolean  "cdn_xp_study_perm_dli",        default: false
     t.boolean  "cdn_xp_none",                  default: false
-    t.boolean  "cdn_xp_one_yr",                default: false
-    t.boolean  "cdn_xp_one_or_more",           default: false
     t.integer  "points",                       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160813225841) do
     t.integer  "assessment_id"
     t.boolean  "is_married",                   default: false
     t.boolean  "trade_cert",                   default: false
+    t.integer  "cdn_xp_years"
     t.index ["assessment_id"], name: "index_candidates_on_assessment_id"
     t.index ["country_id"], name: "index_candidates_on_country_id"
     t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id"

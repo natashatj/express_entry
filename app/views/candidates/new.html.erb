@@ -11,8 +11,8 @@
         </ul>
       </div>
       <% end %>
-      <p>Please complete the following fields:</p>
       <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
+
       <%= f.hidden_field :assessments_id, value: @id %>
       <div>
         <%= f.label :first_name %>
@@ -61,15 +61,11 @@
       </div>
       <div>
         <%= f.check_box :cdn_xp_none%>
-        <%= label_tag(:cdn_xp_none, "I have no Canadian experience") %>
+        <%= label_tag(:cdn_xp_none, "I have no Canadian work experience") %>
       </div>
       <div>
-        <%= f.check_box :cdn_xp_one_yr %>
-        <%= label_tag(:cdn_xp_one_yr, "I have one year of Canadian experience") %>
-      </div>
-      <div>
-        <%= f.check_box :cdn_xp_one_or_more %>
-        <%= label_tag(:cdn_xp_one_or_more, "I have two or more years of Canadian experience") %>
+        <%= f.number_field :cdn_xp_years, min: 1, max: 5 %>
+        <%= label_tag(:cdn_xp_years, "Enter amount of years of Canadian work experience") %>
       </div>
       <div>
         <%= f.check_box :cdn_xp_visited %>
@@ -158,6 +154,7 @@
       Fanny pack leggings farm-to-table paleo. Street art bushwick jean shorts, thundercats farm-to-table gastropub narwhal squid forage drinking vinegar yuccie sriracha. Selfies 3 wolf moon brooklyn distillery. Helvetica neutra wolf marfa, mumblecore food truck slow-carb shabby chic mlkshk. Microdosing synth meh ethical mustache, vinyl artisan. Green juice pour-over listicle next level meh. VHS roof party microdosing, bicycle rights paleo locavore jean shorts pour-over poutine portland.</p>
   </div>
 </div>
-  </div>
-</div>
 
+<script>
+      Fort.flash("#009DFF", "#000", "#6638F0");
+</script>
