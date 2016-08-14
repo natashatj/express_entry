@@ -151,8 +151,11 @@ $(window).resize(function(){
 
 //render the second form if application has two candidates
 // var spousePresent = 
-$( ".left-side-form" ).clone().appendTo( ".personal-forms" );
-
+$(function(){
+  function CloneForm(){
+    $( ".left-side-form" ).clone().appendTo( ".personal-forms" );
+  }
+});
 // // // = require_tree .
 
 

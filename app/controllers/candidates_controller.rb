@@ -23,7 +23,12 @@ class CandidatesController < ApplicationController
     if @candidate.save
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
+       # binding.pry
+      @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
       binding.pry
+      @candidate_first_language = calculate_points_for_language(@candidate)
+       
+    
     else
       render :new
     end
@@ -133,82 +138,48 @@ class CandidatesController < ApplicationController
       end
     end
 
-  
- 
+    def calculate_points_for_edu(edu_level)
 
-  # def calculate_points_for_edu(edu_level)
-  #   # if candidate.is_married?
-  #     married_edu_points = @edu_points_married.fetch(edu_level)
-  #     @candidate.points += married_edu_points
-  #   # elsif !candidate.is_married?
-  #   #   single_edu_points = @edu_points_single.fetch(edu_level)
-  #   #   candidate.points += single_edu_points
-  #   # end
-  # end
+      @edu_points_married = {
+        1 => 28,
+        2 => 84,
+        3 => 91,
+        4 => 112,
+        5 => 119,
+        6 => 126,
+        7 => 140
+
+      }
+
+      @edu_points_single = {
+        1 => 30,
+        2 => 90,
+        3 => 98,
+        4 => 120,
+        5 => 128,
+        6 => 135,
+        7 => 150
+      }
+  
+
+    if @candidate.is_married
+      married_edu_points = @edu_points_married.fetch(edu_level)
+      @candidate.points += married_edu_points
+    elsif !@candidate.is_married
+      single_edu_points = @edu_points_single.fetch(edu_level)
+      @candidate.points += single_edu_points
+    end
+  end
      
 
 
 
-  #best way to write out methods
-  #how we relate to candidate
-  #how we store the points (variable or directly in db (breakdown is in assessment table))
-  #how to get methods triggered once button is clicked
   #method that checks who out of the two candidates has higher points, makes that one primary
   #check if its second person submitting form, compare then and then update table
   #if want to share method, put it in application controller
-
-
- 
   #once candidates have total points compiled and candidate with highest points has been determined decrease other candidate's points based on the alocated spouse points.
-  #add trade cert column to candidates, default to false boolean and default all other booleans to false
-
-      #get key for particular value (can put in csv and read from it)
-      #hash instead of if and else, go through value of the hash
-      #do update route
-     
-
-      # @age_points_single = {
-      #   20..29 => 110,
-      #   19 => 105,
-      #   30 => 105,
-      #   18 => 99,
-      #   31 => 99,
-      #   32 => 94,
-      #   33 => 88,
-      #   34 => 83,
-      #   35 => 77,
-      #   36 => 72,
-      #   37 => 66,
-      #   38 => 61,
-      #   39 => 55,
-      #   40 => 50,
-      #   41 => 39,
-      #   42 => 28,
-      #   43 => 17,
-      #   44 => 6
-      # }
-  
-
-      # @edu_points_married = {
-      #   "High School": 28,
-      #   "One year Post Secondary": 84,
-      #   "Two year Post Secondary": 91,
-      #   "Bachelor's": 112,
-      #   "Bachelor's and Post Grad": 119,
-      #   "Master's or Prof Bach": 126,
-      #   "PhD": 140
-
-      # }
-
-      # @edu_points_single = {
-      #   "High School": 30,
-      #   "One year Post Secondary": 90,
-      #   "Two year Post Secondary": 98,
-      #   "Bachelor's": 120,
-      #   "Bachelor's or Post Grad": 128,
-      #   "Master's or Prof Bach": 135,
-      #   "PhD": 150
-      # }
+  #do update route
+    
 
 
     # def first_language_points

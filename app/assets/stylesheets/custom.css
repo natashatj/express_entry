@@ -101,3 +101,7 @@ hr:before {
   overflow: auto;
 }
 
+.personal-forms{
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
