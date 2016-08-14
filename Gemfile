@@ -53,6 +53,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # .csv interpretation
 gem 'smarter_csv'
 
-
+gem 'rails-assets-tether', '~> 1.1.0'
 
 

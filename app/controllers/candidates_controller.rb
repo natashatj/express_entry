@@ -23,8 +23,8 @@ class CandidatesController < ApplicationController
     if @candidate.save
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
-       # binding.pry
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
+
      
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
 
@@ -33,8 +33,7 @@ class CandidatesController < ApplicationController
        binding.pry
       
       # @candidate_first_language = calculate_points_for_language(@candidate)
-       
-    
+      
     else
       render :new
     end
@@ -266,7 +265,6 @@ class CandidatesController < ApplicationController
     #method that checks who out of the two candidates has higher points, makes that one primary
   #check if its second person submitting form, compare then and then update table
   #if want to share method, put it in application controller
-
   #once candidates have total points compiled and candidate with highest points has been determined decrease other candidate's points based on the alocated spouse points.
   #do update route
     

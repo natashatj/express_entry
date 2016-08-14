@@ -11,9 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require tether
 //= require jquery_ujs
 //= require turbolinks
 // //= require_tree .
+
+// CANDIDATE FORM
+
 $(function(){
   function updateLanguageTestMenu(selectedLanguage) {
     var $ele = $(".options_eval");
@@ -135,10 +139,31 @@ $(function(){
     console.log(selectedTest);
 
   });
-})
+});
 
+// video on main page
+var w = $(window).width(), h = $(window).height()  
+$('#video-block video').css({height: ''+h+'',width: ''+w+''});
+$(window).resize(function(){
+  var w = $(window).width(), h = $(window).height()  
+  $('#video-block video').css({height: ''+h+'',width: ''+w+''});
+});
 
-
-
+//render the second form if application has two candidates
+// var spousePresent = 
+$(function(){
+  function CloneForm(){
+    $( ".left-side-form" ).clone().appendTo( ".personal-forms" );
+  }
+});
 // // // = require_tree .
+
+
+
+
+
+
+
+
+
 
