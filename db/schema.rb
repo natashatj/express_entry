@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160814000038) do
+=======
+ActiveRecord::Schema.define(version: 20160813225841) do
+>>>>>>> styling
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"

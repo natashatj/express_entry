@@ -1,6 +1,19 @@
-<h1>Home Page</h1>
-	<button>
+<section id="video-block" class="fullscreen">
+  <!-- Adjust video height and width -->
+  <!-- Embed Video as Background-->
+  <div style="width:initial;" >
+    <video autoplay loop id="video-background" muted >
+      <source src="/intro-video2.mp4">
+    </video>
+  </div>
+</section>
 
-	<%= link_to "Start Assessment", new_assessment_path%>
-
-	</button>
+<div class="front-page-title">
+  <h1>The Maple Road</h1>
+  <hr>
+  <h2>your express entry calculator for immigration to Canada</h2>
+  <!-- <h2>immigration to Canada</h2> -->
+</div>
+<button class="start-assessment">
+  <p><%= link_to "Start Assessment", new_assessment_path %></p>
+</button>
