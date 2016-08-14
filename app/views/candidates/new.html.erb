@@ -60,15 +60,11 @@
   </div>
   <div>
   <%= f.check_box :cdn_xp_none%>
-  <%= label_tag(:cdn_xp_none, "I have no Canadian experience") %>
+  <%= label_tag(:cdn_xp_none, "I have no Canadian work experience") %>
   </div>
-  <div>
-  <%= f.check_box :cdn_xp_one_yr %>
-  <%= label_tag(:cdn_xp_one_yr, "I have one year of Canadian experience") %>
-  </div>
-  <div>
-  <%= f.check_box :cdn_xp_one_or_more %>
-  <%= label_tag(:cdn_xp_one_or_more, "I have two or more years of Canadian experience") %>
+    <div>
+  <%= f.number_field :cdn_xp_years, min: 1, max: 5 %>
+  <%= label_tag(:cdn_xp_years, "Enter amount of years of Canadian work experience") %>
   </div>
   <div>
   <%= f.check_box :cdn_xp_visited %>

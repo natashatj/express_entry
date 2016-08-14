@@ -25,7 +25,13 @@ class CandidatesController < ApplicationController
       @candidate_age_points = calculate_points_for_age(@candidate_age)
        # binding.pry
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
-      binding.pry
+     
+      @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
+
+      @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
+      @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
+       binding.pry
+      
       # @candidate_first_language = calculate_points_for_language(@candidate)
        
     
@@ -59,8 +65,8 @@ class CandidatesController < ApplicationController
       :cdn_xp_work_permit_paid, 
       :cdn_xp_study_perm_dli, 
       :cdn_xp_none, 
-      :cdn_xp_one_yr, 
-      :cdn_xp_one_or_more) 
+      :cdn_xp_years
+      ) 
   end
 
   def calculate_age(dob)
@@ -170,11 +176,94 @@ class CandidatesController < ApplicationController
       @candidate.points += single_edu_points
     end
   end
-     
+  
 
+    def cdn_work(cdn_work_xp)
+      @cdn_work_married = {
 
+        1 => 35,
+        2 => 46,
+        3 => 56,
+        4 => 63,
+        5 => 70
+      }
 
-  #method that checks who out of the two candidates has higher points, makes that one primary
+       @cdn_work_single = {
+
+        1 => 40,
+        2 => 53,
+        3 => 64,
+        4 => 72,
+        5 => 80
+      }
+      if @candidate.is_married
+      married_cdn_work_points = @cdn_work_married.fetch(cdn_work_xp)
+      @candidate.points += married_cdn_work_points
+    elsif !@candidate.is_married
+      single_cdn_work_points = @cdn_work_single.fetch(cdn_work_xp)
+      @candidate.points += single_cdn_work_points
+    end
+    end
+
+    def adaptability_ed_cdn_xp
+        # @natasha = {
+        #   4: "one"
+        #   5: "two"
+        #   6: "two"
+        #   7: "two"
+        # }
+      if @candidate.edu_level_id == 4 && @candidate.cdn_xp_years == 1
+        @candidate.points += 13
+      elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+        @candidate.points += 25
+      elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+        @candidate.points += 25
+      else 
+        return false
+      end
+    end
+
+    def adaptability_frg_xp_and_cdn_xp
+      if @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years == 1
+        @candidate.points += 13
+      elsif @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years >= 2
+        @candidate.points += 25
+      elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years == 1
+        @candidate.points += 25
+      elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years >= 2
+        @candidate.points += 50
+      end
+
+    end
+
+    # def adaptability_ed_lang
+
+    #   if candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+    #     candidate.points += 13
+    #   elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
+    #     candidate.points += 25
+    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+    #     candidate.points += 25
+    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
+    #     candidate.points += 50 
+    #   end 
+    # end
+    
+    
+
+    # def adaptability_frg_xp_and_lang
+    #   if (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
+    #     candidate.points += 13
+    #   elsif (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data >= 9)
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
+    #     candidate.points += 25
+    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data >= 9)
+    #     candidate.points += 50
+    #   end
+    # end
+
+    #method that checks who out of the two candidates has higher points, makes that one primary
   #check if its second person submitting form, compare then and then update table
   #if want to share method, put it in application controller
 
@@ -219,74 +308,7 @@ class CandidatesController < ApplicationController
 
     # end
 
-    # def cdn_work
-    #   cdn_work_married = {
-
-    #     1: 35,
-    #     2: 46,
-    #     3: 56,
-    #     4: 63,
-    #     5: 70
-    #   }
-
-    #    cdn_work_single = {
-
-    #     1: 40,
-    #     2: 53,
-    #     3: 64,
-    #     4: 72,
-    #     5: 80
-    #   }
-      
-    # end
-
-    # def adaptability_ed_lang
-
-    #   if candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-    #     candidate.points += 13
-    #   elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
-    #     candidate.points += 25
-    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-    #     candidate.points += 25
-    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
-    #     candidate.points += 50 
-    #   end 
-    # end
     
-    # def adaptability_ed_cdn_xp
-    #   if candidate.edu_level.cred == 1 && candidate.cdn_xp == 1
-    #     candidate.points += 13
-    #   elsif candidate.edu_level.cred == 1 && candidate.cdn_xp >= 2
-    #     candidate.points += 25
-    #   elsif candidate.edu_level.cred == 2 && candidate.cdn_xp >= 2
-    #     candidate.points += 25
-    #   end
-    # end
-
-    # def adaptability_frg_xp_and_lang
-    #   if (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
-    #     candidate.points += 13
-    #   elsif (candidate.frg_xp == 1 || candidate.frg_xp == 2) && (candidate.lang_test_data >= 9)
-    #     candidate.points += 25
-    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data == 7 || candidate.lang_test_data == 8)
-    #     candidate.points += 25
-    #   elsif (candidate.frg_xp >= 3) && (candidate.lang_test_data >= 9)
-    #     candidate.points += 50
-    #   end
-    # end
-
-    # def adaptability_frg_xp_and_cdn_xp
-    #   if (candidate.frg_xp == 1 || candidate.frg_xp == 2) && candidate.cdn_xp == 1
-    #     candidate.points += 13
-    #   elsif (candidate.frg_xp == 1 || candidate.frg_xp == 2) && candidate.cdn_xp >= 2
-    #     candidate.points += 25
-    #   elsif (candidate.frg_xp >= 3) && candidate.cdn_xp == 1
-    #     candidate.points += 25
-    #   elsif (candidate.frg_xp >= 3) && candidate.cdn_xp >= 2
-    #     candidate.points += 50
-    #   end
-
-    # end
 
  
 

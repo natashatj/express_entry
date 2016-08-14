@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160814000038) do
     t.integer  "assessment_id"
     t.boolean  "is_married",                   default: false
     t.boolean  "trade_cert",                   default: false
-    t.string   "cdn_xp_years"
+    t.integer  "cdn_xp_years"
     t.index ["assessment_id"], name: "index_candidates_on_assessment_id"
     t.index ["country_id"], name: "index_candidates_on_country_id"
     t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id"
