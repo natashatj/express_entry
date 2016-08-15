@@ -30,7 +30,7 @@ class CandidatesController < ApplicationController
 
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
-       binding.pry
+       # binding.pry
       
       # @candidate_first_language = calculate_points_for_language(@candidate)
       
