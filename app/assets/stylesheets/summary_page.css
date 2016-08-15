@@ -4,11 +4,11 @@
     padding-left: 15px;
 }
 .container_summary {
-	background-color: lightgreen;
+	/*background-color: lightgreen;*/
 }
 
 .row_summary {
-	border:dotted 2px black;
+	/*border:dotted 2px black;*/
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
@@ -16,19 +16,20 @@
 
 
 .summary_header {
-	background-color: lightpink;
+	/*background-color: lightpink;*/
+	border-bottom: solid 1px grey;
 	width: auto;
 	height: 80px;
 }
 .summary_list {
-	background-color: turquoise;
+	/*background-color: turquoise;*/
 	display: block;
 	height:267px;
 
 }
 
 .summary_start {
-	border:dotted 2px red;
+	border:solid 1px grey;
 	height: 350px;
 	margin-bottom: 10px;
   margin-left: 30px;
@@ -36,7 +37,7 @@
 }
 
 #summary_table {
-	background-color: lightblue;
+	/*background-color: lightblue;*/
 	position: relative;
 	display:block;
 	height: 470px;
