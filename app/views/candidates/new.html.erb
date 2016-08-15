@@ -1,3 +1,44 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script type="text/javascript">
+    $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Assessment Points'
+        },
+        subtitle: {
+            text: 'Overview for each requirement'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Points',
+            data: [
+                ['Age', 100],
+                ['First Language', 100],
+                ['Second Language', 100],
+                ['Foreign Experience', 100],
+                ['Trade Certificate', 50],
+                ['Education', 50],
+                ['Canadian Work', 100]
+            ]
+        }]
+    });
+});
+    </script>
 <div class="container">
   <div class="row personal-forms">
     <div class="col-md-6 left-side-form">
@@ -31,14 +72,11 @@
 
     <div class="container">
       <div class="col-md-6 graphs">
-      <p>Celiac messenger bag semiotics kickstarter XOXO. Forage occupy franzen jean shorts hoodie XOXO keytar, hashtag messenger bag food truck pitchfork literally. Literally raw denim trust fund, gentrify pug tacos pork belly gochujang. Dreamcatcher whatever williamsburg four loko wolf. Banjo drinking vinegar health goth, seitan 3 wolf moon vinyl etsy. Stumptown quinoa pug put a bird on it chicharrones. Disrupt swag pour-over fixie, normcore letterpress echo park keffiyeh bitters heirloom typewriter.
-
-      Occupy kickstarter kombucha cray pork belly. Beard gochujang heirloom squid cronut listicle. Viral tacos kombucha, fingerstache authentic echo park sustainable aesthetic beard fanny pack food truck street art. Biodiesel selfies four dollar toast fashion axe pork belly helvetica, crucifix flexitarian direct trade slow-carb austin. Hashtag artisan jean shorts bushwick XOXO, locavore kogi kitsch skateboard green juice gentrify shoreditch cliche put a bird on it. Sustainable blog venmo fingerstache quinoa keffiyeh umami, pour-over artisan. 8-bit lumbersexual distillery man braid before they sold out YOLO.
-
-      +1 fingerstache tumblr gluten-free small batch, disrupt blue bottle typewriter meditation vinyl thundercats man braid. Put a bird on it mumblecore authentic portland, green juice next level vice truffaut hammock organic gochujang. Cliche pour-over cornhole, pug fingerstache hella cronut plaid drinking vinegar mustache trust fund gluten-free lomo poutine brooklyn. Viral banjo kogi, squid microdosing irony street art. Literally semiotics 3 wolf moon bicycle rights, chicharrones quinoa ramps pork belly. Marfa literally pork belly, twee organic whatever DIY gentrify etsy schlitz. Cliche ethical pop-up kogi, gentrify salvia umami kombucha kale chips pinterest mixtape fingerstache authentic pabst.
-
-      Fanny pack leggings farm-to-table paleo. Street art bushwick jean shorts, thundercats farm-to-table gastropub narwhal squid forage drinking vinegar yuccie sriracha. Selfies 3 wolf moon brooklyn distillery. Helvetica neutra wolf marfa, mumblecore food truck slow-carb shabby chic mlkshk. Microdosing synth meh ethical mustache, vinyl artisan. Green juice pour-over listicle next level meh. VHS roof party microdosing, bicycle rights paleo locavore jean shorts pour-over poutine portland.</p>
+      <p>
+       <div id="container" style="height: 400px"></div>
+    </p>
   </div>
+
 </div>
 
 <script>

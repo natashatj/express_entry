@@ -5,20 +5,14 @@
     <%= csrf_meta_tags %>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="//www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap --> 
-    <link href="https://fonts.googleapis.com/css?family=Arimo|Berkshire+Swash|Bungee+Inline|Bungee+Shade|Cabin|Diplomata|Galada|Inconsolata|Limelight|Lobster|Londrina+Shadow|Open+Sans+Condensed:300|Pattaya|Sansita+One|Shrikhand|Ultra" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Berkshire+Swash|Bungee+Inline|Bungee+Shade|Cabin|Diplomata|Galada|Inconsolata|Limelight|Lobster|Londrina+Shadow|Open+Sans+Condensed:300|Pattaya|Sansita+One|Shrikhand|Ultra|Raleway" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>    
   </head>
   <body>
-    <div class="main-nav">
-      <div class="row">
-        <div class="col-lg-12">
-          <%= render 'layouts/menu' %>
-          <%= yield %>
-          <%= render 'layouts/footer' %>
-        </div>
-      </div>
-    </div>    
+    <%= render 'layouts/menu' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
