@@ -1,12 +1,30 @@
-<h1>Log In</h1>
-<%= form_tag sessions_path do %>
-  <div>
-    <%= label_tag :email %><br/>
-    <%= text_field_tag :email %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrap">
+      <div class="form-body">
+        <p class="form-title">Log In</p>
+        <div class="login"><%= form_tag sessions_path do %></div>
+        <div class="login">
+          <%= label_tag :email %><br/>
+          <%= text_field_tag :email %>
+        </div>
+        <div class="login">
+          <%= label_tag :password %><br/>
+          <%= password_field_tag :password %>
+        </div>
+        <div><%= submit_tag "Log In" %></div>
+        <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= label_tag :password %><br/>
-    <%= password_field_tag :password %>
-  </div>
-  <div><%= submit_tag "Log In" %></div>
-<% end %>
+</div>
+
+
+<!-- put everything inside a div with special class, for that class put margin top 100px 
+
+
+
+
+
