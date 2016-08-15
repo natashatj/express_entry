@@ -15,23 +15,4 @@
 //= require jquery_ujs
 //= require turbolinks
 // //= require_tree .
-
-// video on main page
-
-
-//render the second form if application has two candidates
-// var spousePresent = 
-// $(function DuplicateForm(){
-//     $( ".left-side-form" ).clone().appendTo( ".personal-forms" );
-// });
 // // // = require_tree .
-
-
-
-
-
-
-
-
-
-

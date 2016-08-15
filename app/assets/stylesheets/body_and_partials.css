@@ -3,9 +3,11 @@
   top: 0;
   position: fixed;
   z-index: 1;
+  min-height: 50px;
 }
 /*footer*/
 footer {
+  font-family: "Raleway", sans-serif;
   margin: 0 auto;
   position: absolute;
   bottom: 0;
@@ -16,6 +18,7 @@ footer {
 }
 body{
   text-align: center;
+  margin-top: 50px;
 }
 .special-btn{
   font-family: 'Lobster', cursive;
