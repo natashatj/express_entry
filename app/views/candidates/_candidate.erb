@@ -79,4 +79,46 @@
 <div>
   <%= c.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
 </div>
-
+<div class ="language_dropdown">
+  <%= c.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+  <div>
+    <select id="tests">
+      <option> Select test </option>
+      <% @language_tests.each do |test| %>
+      <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <select class="score_ranges_reading">
+      <option> Select reading score </option>
+      <% @reading_scores.each do |score| %>
+      <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <select class="score_ranges_writing">
+      <option> Select writing score </option>
+      <% @writing_scores.each do |score| %>
+      <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <select class="score_ranges_speaking">
+      <option> Select speaking score </option>
+      <% @speaking_scores.each do |score| %>
+      <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <select class="score_ranges_listening">
+      <option> Select listening score </option>
+      <% @listening_scores.each do |score| %>
+      <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
+      <% end %>
+    </select>
+  </div>
+</div>
