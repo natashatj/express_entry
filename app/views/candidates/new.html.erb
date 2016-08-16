@@ -4,6 +4,7 @@
 
     <script type="text/javascript">
     $(function () {
+      var data = [];
     $('#container').highcharts({
         chart: {
             type: 'pie',
@@ -26,17 +27,33 @@
         },
         series: [{
             name: 'Points',
-            data: [
-                ['Age', 100],
-                ['First Language', 100],
-                ['Second Language', 100],
-                ['Foreign Experience', 100],
-                ['Trade Certificate', 50],
-                ['Education', 50],
-                ['Canadian Work', 100]
-            ]
+            data: data   
         }]
     });
+
+    $('#education-button').click(function () {
+        var chart = $('#container').highcharts();
+        data.push(['Education', 100]);
+        chart.series[0].setData(data, true);
+    });
+    // the button action
+    $('#foreign-experience-check').click(function () {
+        var chart = $('#container').highcharts();
+        data.push(['Foreign Experience', 50]);
+        chart.series[0].setData(data,true);
+    });
+
+    // $('#foreign-experience-check').click(function () {
+    //     var chart = $('#container').highcharts();
+    //     data.push(['Foreign Experience', 50]);
+    //     chart.series[0].setData(data,true);
+    // });
+
+    // $('#foreign-experience-check').click(function () {
+    //     var chart = $('#container').highcharts();
+    //     data.push(['Foreign Experience', 50]);
+    //     chart.series[0].setData(data,true);
+    // });
 });
     </script>
 <div class="container">
@@ -67,7 +84,7 @@
         <%= f.label :last_name %>
         <%= f.text_field :last_name %>  
       </div>
-      <div>
+      <div id="dob-selector">
         <%= f.label :dob %>
         <%= f.date_select(:dob, options = {start_year: 1900}) %>  
       </div>
@@ -92,11 +109,11 @@
         <%= f.label :kids %>
         <%= f.text_field :kids %>
       </div>
-      <div>
+      <div id="foreign-experience-one-or-two-check">
         <%= f.check_box :frg_work_xp_one_or_two %>
         <%= label_tag(:frg_work_xp_one_or_two, "I have two years or less than two years of foreign work experience") %>
       </div>
-      <div>
+      <div id="foreign-experience-three-or-more-check">
         <%= f.check_box :frg_work_xp_three_or_more%>
         <%= label_tag(:frg_work_xp_three_or_more, "I have three or more years of foreign work experience") %>
       </div>
