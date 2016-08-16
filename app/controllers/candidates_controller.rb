@@ -364,18 +364,29 @@ class CandidatesController < ApplicationController
       end
     end
 
-    # def adaptability_ed_lang
+    def adaptability_ed_lang
 
-    #   if candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-    #     candidate.points += 13
-    #   elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
-    #     candidate.points += 25
-    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-    #     candidate.points += 25
-    #   elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
-    #     candidate.points += 50 
-    #   end 
-    # end
+
+      if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
+      @candidate_2.points += 13
+    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
+      @candidate_2.points += 25
+    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
+      @candidate_2.points += 25
+    else 
+      return false
+    end
+
+      if @candidate.edu_level_id.numbercred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+        candidate.points += 13
+      elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
+        candidate.points += 25
+      elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
+        candidate.points += 25
+      elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
+        candidate.points += 50 
+      end 
+    end
     
     
 
