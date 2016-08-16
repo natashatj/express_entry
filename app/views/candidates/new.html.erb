@@ -166,26 +166,13 @@
             <% end %>
           </select>
         </div>
+
         <div>
-          <select class="score_ranges_speaking">
-            <option> Select speaking score </option>
-            <% @speaking_scores.each do |score| %>
-            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
-            <% end %>
-          </select>
+          <span class="spouse-form"><button type="button">Complete form for spouse / common law</button></span>
         </div>
         <div>
-          <select class="score_ranges_listening">
-            <option> Select listening score </option>
-            <% @listening_scores.each do |score| %>
-            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
-            <% end %>
-          </select>
+          <span><%= a.submit "Submit assessment" %></span>
         </div>
-      </div>
-      <div>
-        <%= f.submit "Submit" %>
-      </div>
       <% end %> 
     </div>
 

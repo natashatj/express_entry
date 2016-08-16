@@ -127,6 +127,12 @@ $(function(){
 // render the second form if application has two candidates
 $(function(){
   $(".spouse").on("click", function(){
+    $(".spouse-form").css("visibility", "visible")
+  })
+});
+
+$(function(){
+  $(".spouse-form").on("click", function(){
     if($(".left-side-form").length == 1){
       // Candidate.create
      $(".left-side-form").clone().appendTo(".personal-forms"); 

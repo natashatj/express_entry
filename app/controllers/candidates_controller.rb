@@ -1,43 +1,49 @@
 class CandidatesController < ApplicationController
  
   def new
-    @edu_levels = EduLevel.all
-    @languages = LanguageTest.limit(2)
-    @language_tests = LanguageTest.all
-    @language_score_tiers = LangScoreTier.all 
-    @reading_scores = LangScoreTier.all.where(skill: "reading")
-    @writing_scores = LangScoreTier.all.where(skill: "writing")
-    @speaking_scores = LangScoreTier.all.where(skill: "speaking")
-    @listening_scores = LangScoreTier.all.where(skill: "listening")
-
-    # @first_candidate = @assessment.candidates.first
-    # @second_candidate = @assessment.candidates.second 
+    declare_form_variables
   end
+
+
 
   def create
 
-    @id = params["assessment_id"]
-    @assessment = Assessment.find(@id)
-    @candidate = @assessment.candidates.new(candidate_params)
+    @assessment = Assessment.find(params["assessment_id"])
+    @assessment.assign_attributes(params.require(:assessment).permit(:candidates))
     
-    if @candidate.save
-      @candidate_age = calculate_age(@candidate.dob)
-      @candidate_age_points = calculate_points_for_age(@candidate_age)
-      @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
-
-     
-      @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
-
-      @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
-      @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
-       binding.pry
-      
-      # @candidate_first_language = calculate_points_for_language(@candidate)
-      
+    if @assessment.save
+      binding.pry
+      redirect_to root_path
     else
-      render :new
+      declare_form_variables
+      redirect_to :new
     end
   end
+
+  # def create
+
+  #   @id = params["assessment_id"]
+  #   @assessment = Assessment.find(@id)
+  #   @candidate = @assessment.candidates.new(candidate_params)
+    
+  #   if @candidate.save
+  #     @candidate_age = calculate_age(@candidate.dob)
+  #     @candidate_age_points = calculate_points_for_age(@candidate_age)
+  #     @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
+
+     
+  #     @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
+
+  #     @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
+  #     @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
+  #      binding.pry
+      
+  #     # @candidate_first_language = calculate_points_for_language(@candidate)
+      
+  #   else
+  #     render :new
+  #   end
+  # end
    
   protected
 
@@ -306,9 +312,19 @@ class CandidatesController < ApplicationController
 
     # end
 
-    
+  def declare_form_variables
+    @edu_levels = EduLevel.all
+    @languages = LanguageTest.limit(2)
+    @language_tests = LanguageTest.all
+    @language_score_tiers = LangScoreTier.all 
+    @reading_scores = LangScoreTier.all.where(skill: "reading")
+    @writing_scores = LangScoreTier.all.where(skill: "writing")
+    @speaking_scores = LangScoreTier.all.where(skill: "speaking")
+    @listening_scores = LangScoreTier.all.where(skill: "listening")
 
- 
+    @assessment = Assessment.find(params[:assessment_id])
+
+ end
 
 
 
