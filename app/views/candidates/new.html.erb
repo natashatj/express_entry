@@ -210,20 +210,6 @@
         <%= f.label :occupation %>
         <%= f.text_field :occupation %>
       </div>
-      <div id="candidate-2-funds">
-        <%= f.label :funds %>
-        <span>CDN</span> $<%= f.text_field :funds %>
-      </div>
-      <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
-      <div id="candidate-2-spouse">
-        <%= f.check_box(:is_married) %>
-        <%= label_tag(:is_married, "I am applying with my spouse / common-law") %>
-      </div>
-      <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
-      <div id="candidate-2-kids">
-        <%= f.label :kids %>
-        <%= f.text_field :kids %>
-      </div>
       <div id="candidate-2-foreign-experience-one-or-two-check">
         <%= f.check_box :frg_work_xp_one_or_two %>
         <%= label_tag(:frg_work_xp_one_or_two, "I have two years or less than two years of foreign work experience") %>
