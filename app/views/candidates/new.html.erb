@@ -227,7 +227,7 @@
         </div>
       </div>
       <div>
-      <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
+      <%= form_for :candidate_2, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
 
       <%= f.hidden_field :assessments_id, value: @id %>
       <div id="candidate-2-first-name">
