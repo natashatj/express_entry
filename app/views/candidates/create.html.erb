@@ -1,7 +1,12 @@
 <h1>Candidates#create</h1>
 <p>Find me in app/views/candiates/create.html.erb</p>
 <h2>Summary Page</h2>
-
+<script type="text/javascript">
+  $("h2").click(function(){
+   var $h2=$('h2'), isEditable=$h2.is('.editable');
+   $h2.prop('contenteditable',!isEditable).toggleClass('editable')
+})  
+</script>
 <section id="summary_table">
   <div class= "container_summary">
     <div class= "row_summary">
@@ -10,11 +15,12 @@
           <div class="summary_header">Your Assessment details</div>
           <div class="summary_list">
             <ul class="summary_ul">
-              <li>candidate points</li>
-              <li>candidate age</li>
-              <li>candidate edu</li>
-              <li>candidate cdn work</li>
-              <li>candidate adapt ed cdn xp</li>
+              <li>Age</li>
+              <li><%= @candidate_age%></li>
+              <li><%= @candidate_age_points%></li>
+              <li>Education</li>
+              <li><%= @candidate.edu_level.name_of_edu_level%></li>
+              <li><%= @candidate_edu_points %></li>
             </ul>
           </div>
           </div>
