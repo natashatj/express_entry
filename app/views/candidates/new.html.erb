@@ -183,7 +183,7 @@
           </select>
         </div>
       </div>
-      <div id="second-applicant-form">
+      <div id="second-applicant-form" class="second_applicant_does_not_exist">
       <%= form_for :candidate_2, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
 
       <%= f.hidden_field :assessments_id, value: @id %>

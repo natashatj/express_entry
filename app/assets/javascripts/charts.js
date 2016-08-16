@@ -1,9 +1,19 @@
-@candidate2 = document.getElementById("#candidate-2-first-name").value();
-console.log(@candidate2);
+// $(function(){
+//   $("#candidate-2-first-name").change(function(){
+//     var candidate2 = document.getElementById("#candidate-2-first-name").value();
+//     console.log(candidate2);
+//   });
+// });
+
+$(function(){
+  $("#candidate-1-spouse").on("click", function(){
+    $("#second-applicant-form").removeClass("second_applicant_does_not_exist");
+  });
+});
 
 $(function () {
   var data = [];
-$('#container-for-chart').highcharts({
+  $('#container-for-chart').highcharts({
     chart: {
         type: 'pie',
         options3d: {
@@ -29,11 +39,11 @@ $('#container-for-chart').highcharts({
     }]
     });
     // TODO: check how to deal with the DOB
-    $('#candidate-1-dob').click(function () {
-        var chart = $('#container-for-chart').highcharts();
-        data.push(['Age', 50]);
-        chart.series[0].setData(data, true);
-    });
+    // $('#candidate-1-dob').click(function () {
+    //     var chart = $('#container-for-chart').highcharts();
+    //     data.push(['Age', 50]);
+    //     chart.series[0].setData(data, true);
+    // });
 
     // the button action
     $('#candidate-1-foreign-experience-one-or-two-check').one("click", function () {
