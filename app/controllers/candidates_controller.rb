@@ -51,10 +51,8 @@ class CandidatesController < ApplicationController
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
-
      
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
-
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
        # binding.pry
@@ -70,11 +68,10 @@ class CandidatesController < ApplicationController
       @candidate_2_age_points = calculate_points_for_age_2(@candidate_2_age)
       @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
 
-     
+    
       @candidate_2_cdn_work_points = cdn_work_2(@candidate_2.cdn_xp_years)
-
       @candidate_2_adapt_cdn_work_ed = adaptability_ed_cdn_xp_2
-      @candidate_2_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp_2
+      @candidate_2_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp_2
        # binding.pry
       
       # @candidate_first_language = calculate_points_for_language(@candidate)
@@ -217,9 +214,9 @@ class CandidatesController < ApplicationController
           43 => 15,
           44 => 5
         }
-    married_age_points_2 =  @age_points_married_2.fetch(age)
-    @candidate_2.points += married_age_points_2     
-  end
+      married_age_points_2 =  @age_points_married_2.fetch(age)
+      @candidate_2.points += married_age_points_2     
+    end
 
   def calculate_points_for_edu(edu_level)
 
