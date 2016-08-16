@@ -31,29 +31,17 @@
         }]
     });
 
-    $('#education-button').click(function () {
-        var chart = $('#container').highcharts();
-        data.push(['Education', 100]);
-        chart.series[0].setData(data, true);
-    });
+    // $('#education-button').click(function () {
+    //     var chart = $('#container').highcharts();
+    //     data.push(['Education', 100]);
+    //     chart.series[0].setData(data, true);
+    // });
     // the button action
-    $('#foreign-experience-check').click(function () {
+    $('#foreign-experience-one-or-two-check').click(function () {
         var chart = $('#container').highcharts();
         data.push(['Foreign Experience', 50]);
         chart.series[0].setData(data,true);
-    });
-
-    // $('#foreign-experience-check').click(function () {
-    //     var chart = $('#container').highcharts();
-    //     data.push(['Foreign Experience', 50]);
-    //     chart.series[0].setData(data,true);
-    // });
-
-    // $('#foreign-experience-check').click(function () {
-    //     var chart = $('#container').highcharts();
-    //     data.push(['Foreign Experience', 50]);
-    //     chart.series[0].setData(data,true);
-    // });
+    })
 });
     </script>
 <div class="container">
@@ -210,6 +198,3 @@
 
 </div>
 
-<script>
-      Fort.flash("#009DFF", "#000", "#6638F0");
-</script>
