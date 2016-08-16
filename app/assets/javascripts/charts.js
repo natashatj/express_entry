@@ -26,22 +26,38 @@
               data: data   
           }]
       });
-
-      // $('#education-button').click(function () {
+      // TODO: check how to deal with the DOB
+      // $('#candidate-1-dob').click(function () {
       //     var chart = $('#container-for-chart').highcharts();
-      //     data.push(['Education', 100]);
+      //     data.push(['Age', 100]);
       //     chart.series[0].setData(data, true);
       // });
-      // the button action
-      $('#foreign-experience-one-or-two-check').one("click", function () {
-          var chart = $('#container-for-chart').highcharts();
-          data.push(['Foreign Experience', 50]);
-          chart.series[0].setData(data,true);
-      });
-      $('#foreign-experience-three-or-more-check').one("click", function () {
-          var chart = $('#container-for-chart').highcharts();
-          data.push(['Foreign Experience', 50]);
-          chart.series[0].setData(data,true);
-      });
 
+      // the button action
+      $('#candidate-1-foreign-experience-one-or-two-check').one("click", function () {
+          var chart = $('#container-for-chart').highcharts();
+          data.push(['Foreign Experience', 50]);
+          chart.series[0].setData(data,true);
+      });
+      $('#candidate-1-foreign-experience-three-or-more-check').one("click", function () {
+          var chart = $('#container-for-chart').highcharts();
+          data.push(['Foreign Experience', 50]);
+          chart.series[0].setData(data,true);
+      });
+      $('#candidate-1-cdn-xp-years').one("click", function () {
+          var chart = $('#container-for-chart').highcharts();
+          data.push(['Canadian Experience', 35]);
+          chart.series[0].setData(data,true);
+      });
+      // TODO: check how to deal with drop-down on number of years for canadian xp
+      // $('#candidate-1-cdn-xp-years').change(function () {
+      //     var chart = $('#container-for-chart').highcharts();
+      //     data.push(['Canadian Experience', 35]);
+      //     chart.series[0].setData(data,true);
+      // });
+      $('#candidate-1-cdn-xp-ps-greater-than-one').one("click", function () {
+          var chart = $('#container-for-chart').highcharts();
+          data.push(['Canadian Experience', 35]);
+          chart.series[0].setData(data,true);
+      });
   });
