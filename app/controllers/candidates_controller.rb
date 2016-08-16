@@ -1,6 +1,9 @@
 class CandidatesController < ApplicationController
  
   def new
+    # @candidate = Candidate.new
+    # @candidate_2 = Candidate.new
+    
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
@@ -29,10 +32,7 @@ class CandidatesController < ApplicationController
       middle_name: params[:middle_name], 
       last_name: params[:last_name],  
       occupation: params[:occupation], 
-      funds: params[:funds],
       bac_is_pro?: params[:bac_is_pro?], 
-      kids: params[:kids], 
-      is_married: params[:is_married],
       frg_work_xp_none: params[:frg_work_xp_none], 
       frg_work_xp_one_or_two: params[:frg_work_xp_one_or_two], 
       frg_work_xp_three_or_more: params[:frg_work_xp_three_or_more], 

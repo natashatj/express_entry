@@ -57,7 +57,7 @@
         </ul>
       </div>
       <% end %>
-      <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
+      <%= form_for [:candidate, :candidate], url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f, c2| %>
 
       <%= f.hidden_field :assessments_id, value: @id %>
       <div id="candidate-1-firt-name">
@@ -227,91 +227,90 @@
         </div>
       </div>
       <div>
-      <%= form_for :candidate_2, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
 
-      <%= f.hidden_field :assessments_id, value: @id %>
+      <%= c2.hidden_field :assessments_id, value: @id %>
       <div id="candidate-2-first-name">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name %>  
+        <%= c2.label :first_name %>
+        <%= c2.text_field :first_name %>  
       </div>
       <div id="candidate-2-middle-name">
-        <%= f.label :middle_name %>
-        <%= f.text_field :middle_name %>  
+        <%= c2.label :middle_name %>
+        <%= c2.text_field :middle_name %>  
       </div>
       <div id="candidate-2-last-name">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name %>  
+        <%= c2.label :last_name %>
+        <%= c2.text_field :last_name %>  
       </div>
       <div id="candidate-2-dob">
-        <%= f.label :dob %>
-        <%= f.date_select(:dob, options = {start_year: 1900}) %>  
+        <%= c2.label :dob %>
+        <%= c2.date_select(:dob, options = {start_year: 1900}) %>  
       </div>
       <div id="candidate-2-country">
-        <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
+        <%= c2.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
       </div>
       <div id="candidate-2-occupation">
-        <%= f.label :occupation %>
-        <%= f.text_field :occupation %>
+        <%= c2.label :occupation %>
+        <%= c2.text_field :occupation %>
       </div>
       <div id="candidate-2-funds">
-        <%= f.label :funds %>
-        <span>CDN</span> $<%= f.text_field :funds %>
+        <%= c2.label :funds %>
+        <span>CDN</span> $<%= c2.text_field :funds %>
       </div>
       <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
       <div id="candidate-2-spouse">
-        <%= f.check_box(:is_married) %>
+        <%= c2.check_box(:is_married) %>
         <%= label_tag(:is_married, "I am applying with my spouse / common-law") %>
       </div>
       <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
       <div id="candidate-2-kids">
-        <%= f.label :kids %>
-        <%= f.text_field :kids %>
+        <%= c2.label :kids %>
+        <%= c2.text_field :kids %>
       </div>
       <div id="candidate-2-foreign-experience-one-or-two-check">
-        <%= f.check_box :frg_work_xp_one_or_two %>
+        <%= c2.check_box :frg_work_xp_one_or_two %>
         <%= label_tag(:frg_work_xp_one_or_two, "I have two years or less than two years of foreign work experience") %>
       </div>
       <div id="candidate-2-foreign-experience-three-or-more-check">
-        <%= f.check_box :frg_work_xp_three_or_more%>
+        <%= c2.check_box :frg_work_xp_three_or_more%>
         <%= label_tag(:frg_work_xp_three_or_more, "I have three or more years of foreign work experience") %>
       </div>
       <div id="candidate-2-cdn-xp-none">
-        <%= f.check_box :cdn_xp_none%>
+        <%= c2.check_box :cdn_xp_none%>
         <%= label_tag(:cdn_xp_none, "I have no Canadian work experience") %>
       </div>
       <div id="candidate-2-cdn-xp-years">
-        <%= f.number_field :cdn_xp_years, min: 1, max: 5 %>
+        <%= c2.number_field :cdn_xp_years, min: 1, max: 5 %>
         <%= label_tag(:cdn_xp_years, "Enter amount of years of Canadian work experience") %>
       </div>
       <div id="candidate-2-cdn-xp-visited">
-        <%= f.check_box :cdn_xp_visited %>
+        <%= c2.check_box :cdn_xp_visited %>
         <%= label_tag(:cdn_xp_visited, "I have visited Canada") %>
       </div>
       <div id="candidate-2-cdn-fr-en-studies">
-        <%= f.check_box :cdn_xp_fr_en_studies %>
+        <%= c2.check_box :cdn_xp_fr_en_studies %>
         <%= label_tag(:cdn_xp_fr_en_studies, "I have studied French or English in Canada") %>
       </div>
       <div id="candidate-2-cdn-xp-ps-greater-than-one">
-        <%= f.check_box :cdn_xp_ps_greater_than_one %>
+        <%= c2.check_box :cdn_xp_ps_greater_than_one %>
         <%= label_tag(:cdn_xp_ps_greater_than_one, "I have studied post-secondary education in Canada and completed a credential of a least 1 year") %>
       </div>
       <div id="candidate-2-cdn-xp-work-greater-than-one">
-        <%= f.check_box :cdn_xp_work_greater_than_one %>
+        <%= c2.check_box :cdn_xp_work_greater_than_one %>
         <%= label_tag(:cdn_xp_work_greater_than_one, "I have worked full-time for more than one year in a skilled position in Canada") %>
       </div>
       <div id="candidate-2-cdn-xp-work-permit-paid"> 
-        <%= f.check_box :cdn_xp_work_permit_paid %>
+        <%= c2.check_box :cdn_xp_work_permit_paid %>
         <%= label_tag(:cdn_xp_work_permit_paid, "My Canadian skilled work experience was paid, gained after I completed my studies, with a Work Permit, and within the last 3 years") %>
       </div>
       <div id="candidate-2-cdn-xp-work-perm-dli">
-        <%= f.check_box :cdn_xp_study_perm_dli %>
+        <%= c2.check_box :cdn_xp_study_perm_dli %>
         <%= label_tag(:cdn_xp_study_perm_dli, "My Canadian post-secondary studies were completed with a vaild Study Permit at a Designated Learning Instition") %>
       </div>
       <div id="candidate-2-edu-level">
-        <%= f.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
+        <%= c2.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
       </div>
       <div class ="language_dropdown" id="candidate-2-first-language">
-        <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+        <%= c2.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
         <div>
           <select id="tests" id="candidate-2-test-first-language">
             <option> Select test </option>
@@ -354,7 +353,7 @@
         </div>
       </div>
       <div class ="language_dropdown" id="candidate-2-second-language">
-        <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+        <%= c2.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
         <div>
           <select id="tests" id="candidate-2-test-second-language">
             <option> Select test </option>
@@ -401,7 +400,6 @@
         <%= f.submit "Submit" %>
       </div>
       <% end %> 
-      <% end %>
     </div>
 
     <div class="container">
