@@ -65,7 +65,7 @@ class CandidatesController < ApplicationController
       render :new
     end
 
-     if @candidate_2.save && @candidate && @candidate.is_married 
+    if @candidate_2.save && @candidate && @candidate.is_married 
       @candidate_2_age = calculate_age(@candidate_2.dob)
       @candidate_2_age_points = calculate_points_for_age_2(@candidate_2_age)
       @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
@@ -266,79 +266,78 @@ class CandidatesController < ApplicationController
       } 
       married_edu_points_2 = @edu_points_married_2.fetch(edu_level)
       @candidate_2.points += married_edu_points_2
-    end
   end
   
-    def cdn_work(cdn_work_xp)
-      @cdn_work_married = {
+  def cdn_work(cdn_work_xp)
+    @cdn_work_married = {
 
-        1 => 35,
-        2 => 46,
-        3 => 56,
-        4 => 63,
-        5 => 70
-      }
+      1 => 35,
+      2 => 46,
+      3 => 56,
+      4 => 63,
+      5 => 70
+    }
 
-       @cdn_work_single = {
+     @cdn_work_single = {
 
-        1 => 40,
-        2 => 53,
-        3 => 64,
-        4 => 72,
-        5 => 80
-      }
-      if @candidate.is_married
-        married_cdn_work_points = @cdn_work_married.fetch(cdn_work_xp)
-        @candidate.points += married_cdn_work_points
-      elsif !@candidate.is_married
-        single_cdn_work_points = @cdn_work_single.fetch(cdn_work_xp)
-        @candidate.points += single_cdn_work_points
-      end
+      1 => 40,
+      2 => 53,
+      3 => 64,
+      4 => 72,
+      5 => 80
+    }
+    if @candidate.is_married
+      married_cdn_work_points = @cdn_work_married.fetch(cdn_work_xp)
+      @candidate.points += married_cdn_work_points
+    elsif !@candidate.is_married
+      single_cdn_work_points = @cdn_work_single.fetch(cdn_work_xp)
+      @candidate.points += single_cdn_work_points
     end
+  end
 
-    def cdn_work_2(cdn_work_xp)
-      @cdn_work_married_2 = {
+  def cdn_work_2(cdn_work_xp)
+    @cdn_work_married_2 = {
 
-        1 => 35,
-        2 => 46,
-        3 => 56,
-        4 => 63,
-        5 => 70
-      }
-      married_cdn_work_points_2 = @cdn_work_married_2.fetch(cdn_work_xp)
-      @candidate_2.points += married_cdn_work_points_2
+      1 => 35,
+      2 => 46,
+      3 => 56,
+      4 => 63,
+      5 => 70
+    }
+    married_cdn_work_points_2 = @cdn_work_married_2.fetch(cdn_work_xp)
+    @candidate_2.points += married_cdn_work_points_2
+  end
+
+  def adaptability_ed_cdn_xp
+      # @natasha = {
+      #   4: "one"
+      #   5: "two"
+      #   6: "two"
+      #   7: "two"
+      # }
+    if @candidate.edu_level_id == 4 && @candidate.cdn_xp_years == 1
+      @candidate.points += 13
+    elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+      @candidate.points += 25
+    elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+      @candidate.points += 25
+    else 
+      return false
     end
+  end
 
-    def adaptability_ed_cdn_xp
-        # @natasha = {
-        #   4: "one"
-        #   5: "two"
-        #   6: "two"
-        #   7: "two"
-        # }
-      if @candidate.edu_level_id == 4 && @candidate.cdn_xp_years == 1
-        @candidate.points += 13
-      elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-        @candidate.points += 25
-      elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-        @candidate.points += 25
-      else 
-        return false
-      end
+  def adaptability_ed_cdn_xp_2
+
+    if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
+      @candidate_2.points += 13
+    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
+      @candidate_2.points += 25
+    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
+      @candidate_2.points += 25
+    else 
+      return false
     end
-
-    def adaptability_ed_cdn_xp_2
-
-      if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
-        @candidate_2.points += 13
-      elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-        @candidate_2.points += 25
-      elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-        @candidate_2.points += 25
-      else 
-        return false
-      end
-    end
+  end
 
     def adaptability_frg_xp_and_cdn_xp
       if @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years == 1
@@ -435,12 +434,6 @@ class CandidatesController < ApplicationController
     #   }
 
     # end
-
-    
-
- 
-
-
 
 end
 
