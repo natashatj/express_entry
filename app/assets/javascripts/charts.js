@@ -7,7 +7,7 @@
 
 $(function(){
   $("#candidate-1-spouse").on("click", function(){
-    $("#second-applicant-form").removeClass("second_applicant_does_not_exist");
+    $("#second-applicant-form").toggleClass("second_applicant_does_not_exist");
   });
 });
 
