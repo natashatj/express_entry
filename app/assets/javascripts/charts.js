@@ -37,5 +37,11 @@
           var chart = $('#container-for-chart').highcharts();
           data.push(['Foreign Experience', 50]);
           chart.series[0].setData(data,true);
-      })
+      });
+      $('#foreign-experience-three-or-more-check').one("click", function () {
+          var chart = $('#container-for-chart').highcharts();
+          data.push(['Foreign Experience', 50]);
+          chart.series[0].setData(data,true);
+      });
+
   });
