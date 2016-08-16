@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814000038) do
+ActiveRecord::Schema.define(version: 20160816025302) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
@@ -83,15 +83,6 @@ ActiveRecord::Schema.define(version: 20160814000038) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "lang_data_and_candidates", force: :cascade do |t|
-    t.integer  "candidate_id"
-    t.integer  "lang_test_data_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["candidate_id"], name: "index_lang_data_and_candidates_on_candidate_id"
-    t.index ["lang_test_data_id"], name: "index_lang_data_and_candidates_on_lang_test_data_id"
-  end
-
   create_table "lang_score_tiers", force: :cascade do |t|
     t.integer  "language_test_id"
     t.string   "name_score"
@@ -99,16 +90,9 @@ ActiveRecord::Schema.define(version: 20160814000038) do
     t.string   "skill"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "candidate_id"
+    t.index ["candidate_id"], name: "index_lang_score_tiers_on_candidate_id"
     t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
-  end
-
-  create_table "lang_test_data", force: :cascade do |t|
-    t.integer  "language_test_id"
-    t.integer  "lang_score_tier_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["lang_score_tier_id"], name: "index_lang_test_data_on_lang_score_tier_id"
-    t.index ["language_test_id"], name: "index_lang_test_data_on_language_test_id"
   end
 
   create_table "language_tests", force: :cascade do |t|
