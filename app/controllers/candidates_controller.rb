@@ -454,10 +454,3 @@ class CandidatesController < ApplicationController
     # end
 
 end
-
-
-
-
-
-
-
