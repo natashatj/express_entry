@@ -92,7 +92,7 @@ $(function () {
 
     });
 
-    // the button action
+    // MAIN APPLICANT
     $('#candidate-1-foreign-experience-one-or-two-check').one("click", function () {
         var chart = $('#container-for-chart').highcharts();
         data.push(['Foreign Experience', 50]);
@@ -113,4 +113,11 @@ $(function () {
         data.push(['Canadian Experience', 35]);
         chart.series[0].setData(data,true);
     });
+
+    // SECONDARY APPLICANT
+    // $('#candidate-2-cdn-xp-ps-greater-than-one').one("click", function () {
+    //     var chart = $('#container-for-chart').highcharts();
+    //     data.push(['Canadian Experience', 35]);
+    //     chart.series[0].setData(data,true);
+    // });
 });
