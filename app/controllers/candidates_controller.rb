@@ -21,8 +21,7 @@ class CandidatesController < ApplicationController
     @candidate = @assessment.candidates.new(candidate_params)
      params
      candidate_params
-    if @candidate.save 
-      binding.pry
+    if @candidate.save
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
     
