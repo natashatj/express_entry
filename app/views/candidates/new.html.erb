@@ -30,8 +30,8 @@
         <%= f.text_field :last_name %>  
       </div>
       <div id="candidate-1-dob">
-        <%= f.label :dob %>
-        <%= f.date_select(:dob, options = {start_year: 1900}) %>  
+        <label>Date of Birth</label>
+        <input type="date" id="dob" name="primary_dob" >
       </div>
       <div id="candidate-1-country">
         <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
