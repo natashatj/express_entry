@@ -66,7 +66,7 @@ class CandidatesController < ApplicationController
     if @candidate_2.save && @candidate && @candidate.is_married 
       @candidate_2_age = calculate_age(@candidate_2.dob)
       @candidate_2_age_points = calculate_points_for_age_2(@candidate_2_age)
-<<<<<<< HEAD
+
       binding.pry
       # @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
 
@@ -74,14 +74,14 @@ class CandidatesController < ApplicationController
       # @candidate_2_cdn_work_points = cdn_work_2(@candidate_2.cdn_xp_years)
       # @candidate_2_adapt_cdn_work_ed = adaptability_ed_cdn_xp_2
       # @candidate_2_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp_2
-=======
+
       @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
 
     
       @candidate_2_cdn_work_points = cdn_work_2(@candidate_2.cdn_xp_years)
       @candidate_2_adapt_cdn_work_ed = adaptability_ed_cdn_xp_2
       @candidate_2_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp_2
->>>>>>> e8872f5df85fe0a95fe162ae4350c76324ebcba5
+
        # binding.pry
       
       # @candidate_first_language = calculate_points_for_language(@candidate)

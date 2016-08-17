@@ -44,118 +44,263 @@
     })
 });
     </script>
-  <div class="container">
-    <div class="row personal-forms">
-      <div class="col-md-6 left-side-form">
+<div class="container">
+  <div class="row personal-forms">
+    <div class="col-md-6 left-side-form">
+      <% if @candidate && @candidate.errors.any? %>
+      <div>
+        <%= pluralize(@candidate.errors.count, "error") %> prevented this page from being submitted:
+        <ul>
+          <% @candidate.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
 
-        <form method="post" action="/assessments/<%= @id %>/candidates">
-          <input type="hidden" name="assessment_id" value="<%= @id %>">
-         
-          <div id="candidate-1-firt-name">
-            <label>First Name</label>
-            <input type="text" name="candidate[first_name]" value="" placeholder="Name" ="">
-          </div>
+      <% end %>
+      <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
 
-          <!-- <div id="candidate-1-middle-name">
-            <label> Middle Name </label>
-            <input type="text" name="candidate[middle_name]">  
-          </div>
-
-          <div id="candidate-1-last-name">
-            <label>Last Name</label>
-            <input type="text" name="candidate[last_name]">
-          </div>
-
-          <div id="candidate-1-dob">
-            <label>Date of Birth</label>
-            <input type="date" name="candidate[dob]">
-          </div> -->
-  <!--
-          <div id="candidate-1-country">
-            <label>Country of Residence</label>
-            <input type="" name="">
-          </div> -->
-
-          <!-- <div id="candidate-1-occupation">
-            <label>Occupation</label>
-            <input type="text" name="candidate[occupation]">   
-          </div>
-
-          <div id="candidate-1-funds">
-            <label>Funds</label>
-            <input type="text" name="candidate[funds]">
-          </div>
-
-          <div id="candidate-1-spouse">
-            <label>I am applying with my spouse / common-law</label>
-            <input type="checkbox" name="candidate[is_married]">
-          </div>
-
-
-          <div id="candidate-1-kids">
-            <label>Kid(s)</label>
-            <input type="text" name="primary-kids">
-          </div>
-
-          <div id="candidate-1-foreign-experience-one-or-two-check">
-            <label>I have two years or less than two years of foreign work experience</label>
-            <input type="checkbox" name="primary-foreign-experience-one-or-two-check">
-          </div>
-
-          <div id="candidate-1-foreign-experience-three-or-more-check">
-            <label>I have three or more years of foreign work experience</label>
-            <input type="checkbox" name="primary-foreign-experience-three-or-more-check">
-          </div>
-
-          <div id="candidate-1-cdn-xp-none">
-            <label>I have no Canadian work experience</label>
-            <input type="checkbox" name="primary-cdn-xp-none">
-          </div>
-
-          <div id="candidate-1-cdn-xp-years">
-            <label>Enter amount of years of Canadian work experience</label>
-            <input type="number" value="1" name="primary-cdn-xp-years">
-          </div>
-          <div id="candidate-1-cdn-xp-visited">
-            <label>I have visited Canada</label>
-            <input type="checkbox" name="primary-cdn-xp-visited">
-          </div>
-
-          <div id="candidate-1-cdn-fr-en-studies">
-            <label>I have studied French or English in Canada</label>
-            <input type="checkbox" name="primary-cdn-fr-en-studies">
-          </div>
-
-          <div id="candidate-1-cdn-xp-ps-greater-than-one">
-            <label>I have studied post-secondary education in Canada and completed a credential of a least 1 year</label>
-            <input type="checkbox" name="primary-cdn-xp-ps-greater-than-one">   
-          </div>
-
-          <div id="candidate-1-cdn-xp-work-greater-than-one">
-            <label>I have worked full-time for more than one year in a skilled position in Canada</label>
-            <input type="checkbox" name="primary-cdn-xp-work-greater-than-one">
-          </div>
-
-          <div id="candidate-1-cdn-xp-work-permit-paid">
-            <label>My Canadian skilled work experience was paid, gained after I completed my studies, with a Work Permit, and within the last 3 years</label>
-            <input type="checkbox" name="primary-cdn-xp-work-permit-paid">
-          </div>
-
-          <div id="candidate-1-cdn-xp-work-perm-dli">
-            <label>My Canadian post-secondary studies were completed with a vaild Study Permit at a Designated Learning Instition</label>
-            <input type="checkbox" name="primary-cdn-xp-work-perm-dli">
-          </div> -->
-
-          <input type="submit" name="Submit" value="Submit">
-        </form>
-
-        <div class="container">
-          <div class="col-md-6 graphs">
-            <p>
-            <div id="container" style="height: 400px"></div>
-            </p>
-          </div>
+      <%= f.hidden_field :assessments_id, value: @id %>
+      <div id="candidate-1-first-name">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>  
+      </div>
+      <div id="candidate-1-middle-name">
+        <%= f.label :middle_name %>
+        <%= f.text_field :middle_name %>  
+      </div>
+      <div id="candidate-1-last-name">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>  
+      </div>
+      <div id="candidate-1-dob">
+        <%= f.label :dob %>
+        <%= f.date_select(:dob, options = {start_year: 1900}) %>  
+      </div>
+      <div id="candidate-1-country">
+        <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
+      </div>
+      <div id="candidate-1-occupation">
+        <%= f.label :occupation %>
+        <%= f.text_field :occupation %>
+      </div>
+      <div id="candidate-1-funds">
+        <%= f.label :funds %>
+        <span>CDN</span> $<%= f.text_field :funds %>
+      </div>
+      <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
+      <div id="candidate-1-spouse">
+        <%= f.check_box(:is_married) %>
+        <%= label_tag(:is_married, "I am applying with my spouse / common-law") %>
+      </div>
+      <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
+      <div id="candidate-1-kids">
+        <%= f.label :kids %>
+        <%= f.text_field :kids %>
+      </div>
+      <div id="candidate-1-foreign-experience-one-or-two-check">
+        <%= f.check_box :frg_work_xp_one_or_two %>
+        <%= label_tag(:frg_work_xp_one_or_two, "I have two years or less than two years of foreign work experience") %>
+      </div>
+      <div id="candidate-1-foreign-experience-three-or-more-check">
+        <%= f.check_box :frg_work_xp_three_or_more%>
+        <%= label_tag(:frg_work_xp_three_or_more, "I have three or more years of foreign work experience") %>
+      </div>
+      <div id="candidate-1-cdn-xp-none">
+        <%= f.check_box :cdn_xp_none%>
+        <%= label_tag(:cdn_xp_none, "I have no Canadian work experience") %>
+      </div>
+      <div id="candidate-1-cdn-xp-work-permit-paid"> 
+        <%= f.check_box :cdn_xp_work_permit_paid %>
+        <%= label_tag(:cdn_xp_work_permit_paid, "My Canadian skilled work experience was paid, gained after I completed my studies with a Work Permit, and within the last 3 years") %>
+      </div>
+      <div id="candidate-1-cdn-xp-years">
+        <%= f.number_field :cdn_xp_years, min: 1, max: 5 %>
+        <%= label_tag(:cdn_xp_years, "Enter amount of years of Canadian work experience") %>
+      </div>
+      <div id="candidate-1-cdn-xp-work-perm-dli">
+        <%= f.check_box :cdn_xp_study_perm_dli %>
+        <%= label_tag(:cdn_xp_study_perm_dli, "My Canadian post-secondary studies were completed with a vaild Study Permit at a Designated Learning Instition") %>
+      </div>
+      <div id="candidate-1-edu-level">
+        <%= f.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
+      </div>
+      <div class ="language_dropdown" id="candidate-1-first-language">
+        <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+        <div>
+          <select id="tests" id="candidate-1-test-first-language">
+            <option> Select test </option>
+            <% @language_tests.each do |test| %>
+            <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_reading" id="candidate-1-score-ranges-reading-first-language">
+            <option> Select reading score </option>
+            <% @reading_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_writing" id="candidate-1-score-writing-first-language">
+            <option> Select writing score </option>
+            <% @writing_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_speaking" id="candidate-1-score-speaking-first-language">
+            <option> Select speaking score </option>
+            <% @speaking_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_listening" id="candidates-1-score-listening-first-language">
+            <option> Select listening score </option>
+            <% @listening_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
+            <% end %>
+          </select>
         </div>
       </div>
+      <div class ="language_dropdown" id="candidate-1-second-language">
+        <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your second language"%>
+        <div>
+          <select id="tests" id="candidate-1-test-second-language">
+            <option> Select test </option>
+            <% @language_tests.each do |test| %>
+            <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_reading" id="candidate-1-score-ranges-reading-second-language">
+            <option> Select reading score </option>
+            <% @reading_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_writing" id="candidate-1-score-writing-second-language">
+            <option> Select writing score </option>
+            <% @writing_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_speaking" id="candidate-1-score-speaking-second-language">
+            <option> Select speaking score </option>
+            <% @speaking_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_listening" id="candidates-1-score-listening-second-language">
+            <option> Select listening score </option>
+            <% @listening_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div>
+      
+      <div id="second-applicant-form" class="second_applicant_does_not_exist">
+      <!-- HIDDEN FORM -->
+      <div id="candidate-2-first-name">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>  
+      </div>
+      <div id="candidate-2-middle-name">
+        <%= f.label :middle_name %>
+        <%= f.text_field :middle_name %>  
+      </div>
+      <div id="candidate-2-last-name">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>  
+      </div>
+
+      <div id="candidate-2-cdn-xp-none">
+        <%= f.check_box :cdn_xp_none%>
+        <%= label_tag(:cdn_xp_none, "I have no Canadian work experience") %>
+      </div>
+
+      <div id="candidate-1-cdn-xp-work-permit-paid"> 
+        <%= f.check_box :cdn_xp_work_permit_paid %>
+        <%= label_tag(:cdn_xp_work_permit_paid, "My Canadian skilled work experience was paid, gained after I completed my studies with a Work Permit, and within the last 3 years") %>
+      </div>
+
+      <div id="candidate-2-cdn-xp-years">
+        <%= f.number_field :cdn_xp_years, min: 1, max: 5 %>
+        <%= label_tag(:cdn_xp_years, "Enter amount of years of Canadian work experience") %>
+      </div>
+
+      <div id="candidate-2-edu-level">
+        <%= f.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
+      </div>
+      <div class ="language_dropdown" id="candidate-2-first-language">
+        <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
+        <div>
+          <select id="tests" id="candidate-2-test-first-language">
+            <option> Select test </option>
+            <% @language_tests.each do |test| %>
+            <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_reading" id="candidate-2-score-ranges-reading-first-language">
+            <option> Select reading score </option>
+            <% @reading_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_writing" id="candidate-2-score-writing-first-language">
+            <option> Select writing score </option>
+            <% @writing_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_speaking" id="candidate-2-score-speaking-first-language">
+            <option> Select speaking score </option>
+            <% @speaking_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+        <div>
+          <select class="score_ranges_listening" id="candidates-2-score-listening-first-language">
+            <option> Select listening score </option>
+            <% @listening_scores.each do |score| %>
+            <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div>
+        <%= f.submit "Submit" %>
+      </div>
+      <% end %> 
     </div>
+
+    <div class="container">
+      <div class="col-md-6 graphs">
+      <p>
+       <div id="container" style="height: 400px"></div>
+    </p>
   </div>
+
+</div>
+
