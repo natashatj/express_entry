@@ -24,29 +24,7 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
-    @candidate_2 = @assessment.candidates.new(
-      edu_level_id: params[:edu_level_id],
-      dob: params[:dob],
-      country_id: params[:country_id], 
-      first_name: params[:first_name], 
-      middle_name: params[:middle_name], 
-      last_name: params[:last_name],  
-      occupation: params[:occupation], 
-      bac_is_pro?: params[:bac_is_pro?], 
-      frg_work_xp_none: params[:frg_work_xp_none], 
-      frg_work_xp_one_or_two: params[:frg_work_xp_one_or_two], 
-      frg_work_xp_three_or_more: params[:frg_work_xp_three_or_more], 
-      cdn_xp_visited: params[:cdn_xp_visited], 
-      cdn_xp_fr_en_studies: params[:cdn_xp_fr_en_studies], 
-      cdn_xp_ps_greater_than_one: params[:cdn_xp_ps_greater_than_one], 
-      cdn_xp_work_greater_than_one: params[:cdn_xp_work_greater_than_one], 
-      cdn_xp_work_permit_paid: params[:cdn_xp_work_permit_paid], 
-      cdn_xp_study_perm_dli: params[:cdn_xp_study_perm_dli], 
-      cdn_xp_none: params[:cdn_xp_none], 
-      cdn_xp_years: params[:cdn_xp_years]
-
-      )
-
+    
     if @candidate.save 
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
@@ -55,33 +33,6 @@ class CandidatesController < ApplicationController
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
-       # binding.pry
-      
-      # @candidate_first_language = calculate_points_for_language(@candidate)
-      
-    else
-      render :new
-    end
-
-    if @candidate_2.save && @candidate && @candidate.is_married 
-      @candidate_2_age = calculate_age(@candidate_2.dob)
-      @candidate_2_age_points = calculate_points_for_age_2(@candidate_2_age)
-
-      binding.pry
-      # @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
-
-    
-      # @candidate_2_cdn_work_points = cdn_work_2(@candidate_2.cdn_xp_years)
-      # @candidate_2_adapt_cdn_work_ed = adaptability_ed_cdn_xp_2
-      # @candidate_2_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp_2
-
-      @candidate_2_edu_points = calculate_points_for_edu_2(@candidate_2.edu_level_id)
-
-    
-      @candidate_2_cdn_work_points = cdn_work_2(@candidate_2.cdn_xp_years)
-      @candidate_2_adapt_cdn_work_ed = adaptability_ed_cdn_xp_2
-      @candidate_2_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp_2
-
        # binding.pry
       
       # @candidate_first_language = calculate_points_for_language(@candidate)
