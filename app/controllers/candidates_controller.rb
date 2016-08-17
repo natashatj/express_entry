@@ -19,9 +19,12 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
+     puts "this is params"
      params
+     puts "whitelisted"
      candidate_params
     if @candidate.save
+      binding.pry
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
     

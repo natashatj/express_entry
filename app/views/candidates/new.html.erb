@@ -16,17 +16,17 @@
   <% end %>
   <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
   <%= f.hidden_field :assessments_id, value: @id %>
-  <div id="candidate-1-first-name">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>  
+  <div class= "form-effect" id="candidate-1-first-name">
+    <div class="form-effect"><%= f.label :first_name %></div>
+    <div class="form-effect"><%= f.text_field :first_name %></div>
   </div>
-  <div id="candidate-1-middle-name">
-    <%= f.label :middle_name %>
-    <%= f.text_field :middle_name %>  
+  <div class="form-effect" id="candidate-1-middle-name">
+    <div class="form-effect"><%= f.label :middle_name %></div>
+    <div class="form-effect"><%= f.text_field :middle_name %></div> 
   </div>
-  <div id="candidate-1-last-name">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>  
+  <div class="form-effect" id="candidate-1-last-name">
+    <div class="form-effect"><%= f.label :last_name %></div>
+    <div class="form-effect"><%= f.text_field :last_name %></div> 
   </div>
   <div id="candidate-1-dob">
     <%= f.label :dob %>
