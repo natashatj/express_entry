@@ -13,10 +13,15 @@
   <!-- <hr> -->
   <h2>YOUR EXPRESS ENTRY CALCULATOR FOR IMMIGRATION TO CANADA</h2>
   <!-- <h2>immigration to Canada</h2> -->
-  <button class="start-assessment">
-  <p><%= link_to "START ASSESSMENT", new_assessment_path %></p>
-  </button>
-  <button class="start-assessment">
-    <p><%= link_to "CREATE YOUR ACCOUNT", new_user_path %></p>
-  </button>
+  
+
+  <% if session[:user_id].nil? %><!-- not the admin -->
+    <button class="start-assessment">
+      <p><%= link_to "CREATE YOUR ACCOUNT", new_user_path %></p>
+    </button>
+  <% else %>
+    <button class="start-assessment">
+      <p><%= link_to "START ASSESSMENT", new_assessment_path %></p>
+    </button>
+  <% end %>
 </div>
