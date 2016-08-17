@@ -30,7 +30,7 @@
   </div>
   <div id="candidate-1-dob">
     <%= f.label :dob %>
-    <%= f.calendar_date_select_includes :dob %>  
+    <%= f.date_select :dob, :start_year => 1900 %>  
   </div>
   <div id="candidate-1-country">
     <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
