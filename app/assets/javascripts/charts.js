@@ -1,10 +1,3 @@
-// $(function(){
-//   $("#candidate-2-first-name").change(function(){
-//     var candidate2 = document.getElementById("#candidate-2-first-name").value();
-//     console.log(candidate2);
-//   });
-// });
-
 var agePoints = {
   "18": 99,
   "19": 105,
@@ -35,11 +28,6 @@ var agePoints = {
   "44": 6
 }
 
-/*
- * calculate year from a given date of birth
- * @oaram string dob
- * @return integer age
- */
 function calculateAge(dob) {
   var today = new Date();
   var dobDate = new Date(dob);
@@ -94,13 +82,13 @@ $(function () {
     });
     // TODO: check how to deal with the DOB
     $('#dob').on('change', function() {
-          // date is valid
-          var dob = $(this).val();
-          var age_points = calculateAgePoints(dob);
-          // get points from dob
-          var chart = $('#container-for-chart').highcharts();
-          data.push(['Age', age_points]);
-          chart.series[0].setData(data, true);
+      // date is valid
+      var dob = $(this).val();
+      var age_points = calculateAgePoints(dob);
+      // get points from dob
+      var chart = $('#container-for-chart').highcharts();
+      data.push(['Age', age_points]);
+      chart.series[0].setData(data, true);
 
     });
 
