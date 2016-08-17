@@ -75,6 +75,12 @@ $(function () {
     subtitle: {
         text: 'Overview for each requirement'
     },
+    credits: {
+      enabled: false
+    },
+    exporting: { 
+      enabled: false 
+    },
     plotOptions: {
         pie: {
             innerSize: 100,
