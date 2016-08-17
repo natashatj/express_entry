@@ -1,9 +1,7 @@
 class CandidatesController < ApplicationController
  
   def new
-    # @candidate = Candidate.new
-    # @candidate_2 = Candidate.new
-    
+
     @edu_levels = EduLevel.all
     @languages = LanguageTest.limit(2)
     @language_tests = LanguageTest.all
@@ -12,9 +10,6 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
-
-    # @first_candidate = @assessment.candidates.first
-    # @second_candidate = @assessment.candidates.second 
   end
 
   def create
@@ -24,19 +19,21 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
-    
+     params
+     candidate_params
     if @candidate.save 
+      binding.pry
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
+    
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
-     
+
+
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
-       # binding.pry
-      
-      # @candidate_first_language = calculate_points_for_language(@candidate)
-      
+      #add adapt methods that include lang
+      #spouse first lang method 
     else
       render :new
     end
@@ -77,6 +74,7 @@ class CandidatesController < ApplicationController
 
     age = b.year - a.year
   end
+
   def calculate_points_for_age(age)
   @age_points_married = {
         20 => 100,
@@ -145,39 +143,7 @@ class CandidatesController < ApplicationController
         @candidate.points += single_age_points
       end
     end
-  def calculate_points_for_age_2(age)
-    @age_points_married_2 = {
-          20 => 100,
-          21 => 100,
-          22 => 100,
-          23 => 100,
-          24 => 100,
-          25 => 100,
-          26 => 100,
-          27 => 100,
-          28 => 100,
-          29 => 100,
-          19 => 95,
-          30 => 95,
-          18 => 90,
-          31 => 90,
-          32 => 85,
-          33 => 80,
-          34 => 75,
-          35 => 70,
-          36 => 65,
-          37 => 60,
-          38 => 55,
-          39 => 50,
-          40 => 45,
-          41 => 35,
-          42 => 25,
-          43 => 15,
-          44 => 5
-        }
-      married_age_points_2 =  @age_points_married_2.fetch(age)
-      @candidate_2.points += married_age_points_2     
-    end
+
 
   def calculate_points_for_edu(edu_level)
 
@@ -212,20 +178,7 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def calculate_points_for_edu_2(edu_level)
-      @edu_points_married_2 = {
-        1 => 28,
-        2 => 84,
-        3 => 91,
-        4 => 112,
-        5 => 119,
-        6 => 126,
-        7 => 140
-      } 
-      married_edu_points_2 = @edu_points_married_2.fetch(edu_level)
-      @candidate_2.points += married_edu_points_2
-  end
-  
+
   def cdn_work(cdn_work_xp)
     @cdn_work_married = {
 
@@ -253,45 +206,14 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def cdn_work_2(cdn_work_xp)
-    @cdn_work_married_2 = {
-
-      1 => 35,
-      2 => 46,
-      3 => 56,
-      4 => 63,
-      5 => 70
-    }
-    married_cdn_work_points_2 = @cdn_work_married_2.fetch(cdn_work_xp)
-    @candidate_2.points += married_cdn_work_points_2
-  end
-
   def adaptability_ed_cdn_xp
-      # @natasha = {
-      #   4: "one"
-      #   5: "two"
-      #   6: "two"
-      #   7: "two"
-      # }
+  
     if @candidate.edu_level_id == 4 && @candidate.cdn_xp_years == 1
       @candidate.points += 13
     elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
       @candidate.points += 25
     elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
       @candidate.points += 25
-    else 
-      return false
-    end
-  end
-
-  def adaptability_ed_cdn_xp_2
-
-    if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
-      @candidate_2.points += 13
-    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-      @candidate_2.points += 25
-    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-      @candidate_2.points += 25
     else 
       return false
     end
@@ -309,22 +231,7 @@ class CandidatesController < ApplicationController
       end
     end
 
-
-    def adaptability_frg_xp_and_cdn_xp_2
-      if @candidate_2.frg_work_xp_one_or_two == true && @candidate_2.cdn_xp_years == 1
-        @candidate_2.points += 13
-      elsif @candidate_2.frg_work_xp_one_or_two == true && @candidate_2.cdn_xp_years >= 2
-        @candidate_2.points += 25
-      elsif @candidate_2.frg_work_xp_three_or_more == true && @candidate_2.cdn_xp_years == 1
-        @candidate_2.points += 25
-      elsif @candidate_2.frg_work_xp_three_or_more == true && @candidate_2.cdn_xp_years >= 2
-        @candidate_2.points += 50
-      end
-    end
-
     def adaptability_ed_lang
-
-
       if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
       @candidate_2.points += 13
     elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
@@ -402,6 +309,15 @@ class CandidatesController < ApplicationController
     #     10: 6
     #   }
 
+    # end
+
+    # def eligibility
+    #   if @candidate.points >= 450
+    #     p "Eligible"
+    #     #in erb compare points to show eligiblity
+    #   elsif @candidate.points < 450
+    #     p "iNeligble"
+    #   end
     # end
 
 end
