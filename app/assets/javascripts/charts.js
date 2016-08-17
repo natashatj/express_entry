@@ -94,13 +94,6 @@ $(function () {
     });
     // TODO: check how to deal with the DOB
     $('#dob').on('change', function() {
-      if ( Object.prototype.toString.call(dob) === "[object Date]" ) {
-      // it is a date
-        if ( isNaN( dob.getTime() ) ) {  // d.valueOf() could also work
-          // date is not valid
-          alert("Invalid input for your birth date");
-        }
-        else {
           // date is valid
           var dob = $(this).val();
           var age_points = calculateAgePoints(dob);
@@ -108,8 +101,7 @@ $(function () {
           var chart = $('#container-for-chart').highcharts();
           data.push(['Age', age_points]);
           chart.series[0].setData(data, true);
-        }
-      }
+
     });
 
     // the button action
@@ -128,12 +120,6 @@ $(function () {
         data.push(['Canadian Experience', 35]);
         chart.series[0].setData(data,true);
     });
-    // TODO: check how to deal with drop-down on number of years for canadian xp
-    // $('#candidate-1-cdn-xp-years').change(function () {
-    //     var chart = $('#container-for-chart').highcharts();
-    //     data.push(['Canadian Experience', 35]);
-    //     chart.series[0].setData(data,true);
-    // });
     $('#candidate-1-cdn-xp-ps-greater-than-one').one("click", function () {
         var chart = $('#container-for-chart').highcharts();
         data.push(['Canadian Experience', 35]);
