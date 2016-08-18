@@ -19,17 +19,12 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
-   #  @candidate_id = @candidate.id
-   # @current_candidate = Candidate.find(@candidate_id)
 
-   @language = @candidate.language_tests.new(language_params)
-   binding.pry
 
     if @candidate.save
   
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
-    
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
 
 
@@ -70,9 +65,6 @@ class CandidatesController < ApplicationController
       :cdn_xp_none, 
       :cdn_xp_years
       ) 
-  end
-  def language_params
-    params.require(:language_test).permit(:language, :test_evaluation)
   end
 
   def calculate_age(dob)
