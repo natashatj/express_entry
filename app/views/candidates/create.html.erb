@@ -23,11 +23,11 @@
               <li><%= @candidate_edu_points %></li>
               <li class="category">Canadian Work </li>
               <li><%= @candidate_cdn_work_points %></li>
-              <li class="category">Adaptability: Canadian Work Experience and Education</li>
+              <li class="category"> Canadian Work Experience and Education</li>
               <li><%= @candidate_adapt_cdn_work_ed %></li>
-              <li class="category">Adaptability: Canadian Work Experience and Foreign Work Experience</li>
+              <li class="category"> Canadian Work Experience and Foreign Work Experience</li>
               <li><%= @candidate_adapt_cdn_work_frg_work %></li>
-              <li class="category">Adaptability: Education and Language Level</li>
+              <li class="category"> Education and Language Level</li>
               <li><%= @candidate_adapt_ed_lang %> </li>
              <!--  <li class="title"> Category</li>
                 <p class="title"> Points</p>
@@ -36,7 +36,7 @@
               <li class="second">Education</li>
                 <p class="second"><%= @candidate_edu_points %> </p> -->
 
-              <li>TOTAL POINTS <%= @candidate.points%></li>
+              <li class="total_points">TOTAL POINTS <%= @candidate.points%></li>
 
             </ul>
           <%if @candidate.points > 400 %>

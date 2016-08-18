@@ -1,5 +1,5 @@
 input[type="checkbox"] {
-/*visibility: hidden;*/
+
 }
 
 input[type="checkbox"] + label:before {

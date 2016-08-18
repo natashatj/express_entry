@@ -8,7 +8,8 @@
 }
 
 .category {
-  font-family: ""
+  font-size: 19px;
+  font-family: Times;
 }
 
 .eligibility {
@@ -17,8 +18,8 @@
   border: 2px solid white;
   margin: 0 70px 0 70px;
   font-size: 25px;
-  border-radius: 10px 10px;
-  font-family: "Cabin";
+/*  border-radius: 10px 10px;
+*/  font-family: "Cabin";
 }
 
 .first{
@@ -136,7 +137,9 @@ h3{
     padding-right: 60px;
     font-size: 20px;
 }
-
+.total_points {
+  font-family: monospace;
+}
 
 
 
