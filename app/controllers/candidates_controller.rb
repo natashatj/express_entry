@@ -41,6 +41,17 @@ class CandidatesController < ApplicationController
     p "done"
   end
 
+  def make_lang_data(candidate, lang, test, skill) 
+    param_name = "#{lang}_#{test}_#{skill}".to_sym
+    if params[param_name].start_with?('Select')
+      # backup plan?  give them a crap score?  anything?
+      puts "YO!  SOMEONE FORGOT TO FILL OUT THE TEST SCORES FOR #{test}"
+    else
+      @candidate.lang_data.new(lang_score_tier_id: params[param_name])
+    end
+  end
+
+
   def create
 
     @id = params["assessment_id"]
@@ -49,42 +60,42 @@ class CandidatesController < ApplicationController
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
 
+    skill_list = ['reading', 'writing', 'listening', 'speaking']
     if params[:eng_test_choice] == 'CELPIP'
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_reading])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_writing])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_listening])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_speaking])
+      skill_list.each do |sn| make_lang_data(@candidate, "eng", "celpip", sn) end
     elsif params[:eng_test_choice] == 'IELTS'
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_reading])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_writing])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_listening])
-      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_speaking])
+      skill_list.each do |sn| make_lang_data(@candidate, "eng", "ielts", sn) end
     end
-
     if params[:fr_test_choice] == 'TEFL'
-      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_reading])
-      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_writing])
-      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_listening])
-      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_speaking])
+      skill_list.each do |sn| make_lang_data(@candidate, "fr", "tefl", sn) end
     end
-
 
     if @candidate.save
   
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
-
-
-
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
-      @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
+      @candidate_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp
       @candidate_adapt_ed_lang = adaptability_ed_lang
-      binding.pry
+
+      @candidate.points += [
+        @candidate_age_points,
+        @candidate_edu_points,
+        @candidate_cdn_work_points,
+        @candidate_adapt_cdn_work_ed,
+        @candidate_adapt_cdn_work_frg_work,
+        @candidate_adapt_ed_lang
+      ].sum
+
+      
+      # binding.pry
       #add adapt methods that include lang
       #spouse first lang method 
     else
+      puts "blech could not save candidate, zomg"
+      @candidate.errors.each do |e| p e end
       render :new
     end
   end
@@ -126,7 +137,7 @@ class CandidatesController < ApplicationController
   end
 
   def calculate_points_for_age(age)
-  @age_points_married = {
+    @age_points_married = {
         20 => 100,
         21 => 100,
         22 => 100,
@@ -186,11 +197,9 @@ class CandidatesController < ApplicationController
        }
 
       if @candidate.is_married
-        married_age_points =  @age_points_married.fetch(age)
-        @candidate.points += married_age_points
-      elsif !@candidate.is_married
-        single_age_points = @age_points_single.fetch(age)
-        @candidate.points += single_age_points
+        @age_points_married.fetch(age)
+      else
+        @age_points_single.fetch(age)
       end
     end
 
@@ -220,11 +229,9 @@ class CandidatesController < ApplicationController
 
 
     if @candidate.is_married
-      married_edu_points = @edu_points_married.fetch(edu_level)
-      @candidate.points += married_edu_points
-    elsif !@candidate.is_married
-      single_edu_points = @edu_points_single.fetch(edu_level)
-      @candidate.points += single_edu_points
+      @edu_points_married.fetch(edu_level)
+    else
+      @edu_points_single.fetch(edu_level)
     end
   end
 
@@ -248,51 +255,77 @@ class CandidatesController < ApplicationController
       5 => 80
     }
     if @candidate.is_married
-      married_cdn_work_points = @cdn_work_married.fetch(cdn_work_xp)
-      @candidate.points += married_cdn_work_points
-    elsif !@candidate.is_married
-      single_cdn_work_points = @cdn_work_single.fetch(cdn_work_xp)
-      @candidate.points += single_cdn_work_points
+      @cdn_work_married.fetch(cdn_work_xp)
+    else
+      @cdn_work_single.fetch(cdn_work_xp)
     end
   end
 
   def adaptability_ed_cdn_xp
   
     if @candidate.edu_level_id == 4 && @candidate.cdn_xp_years == 1
-      @candidate.points += 13
+      13
     elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-      @candidate.points += 25
+      25
     elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-      @candidate.points += 25
+      25
     else 
-      return false
+      0
     end
   end
 
-    def adaptability_frg_xp_and_cdn_xp
-      if @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years == 1
-        @candidate.points += 13
-      elsif @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years >= 2
-        @candidate.points += 25
-      elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years == 1
-        @candidate.points += 25
-      elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years >= 2
-        @candidate.points += 50
-      end
+  def adaptability_frg_xp_and_cdn_xp
+    if @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years == 1
+      13
+    elsif @candidate.frg_work_xp_one_or_two == true && @candidate.cdn_xp_years >= 2
+      25
+    elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years == 1
+      25
+    elsif @candidate.frg_work_xp_three_or_more == true && @candidate.cdn_xp_years >= 2
+      50
+    else
+      0
     end
+  end
 
-    def adaptability_ed_lang
-
-      if @candidate.edu_level_id == 4 && @candidate.lang_data(lang_score_tier_id: 4)
-      @candidate.points += 13
-    # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-    #   @candidate.points += 25
-    # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
-    #   @candidate.points += 25
-      else 
-        return false
-      end
+  def adaptability_ed_lang
+    clb = get_min_clb
+    if @candidate.edu_level.number_creds == 'two'
+      if clb >= 9
+        50
+      elsif clb >= 7
+        25
+      else
+        0
+      end 
+    elsif @candidate.edu_level.number_creds == 'one'
+      if clb >= 9
+        25
+      elsif clb >= 7
+        13
+      else
+        0
+      end 
+    else
+      0
     end
+  end
+
+  def get_min_clb
+    celpip_min = @candidate.lang_score_tiers.where(language_test_id: 2).map {|score| score.clb}.min
+    tefl_min = @candidate.lang_score_tiers.where(language_test_id: 3).map {|score| score.clb}.min
+    ielts_min = @candidate.lang_score_tiers.where(language_test_id: 4).map {|score| score.clb}.min
+    [celpip_min, tefl_min, ielts_min].map {|x| x||0}.max
+  end
+    
+    # # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+    # #   @candidate.points += 25
+    # # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+    # #   @candidate.points += 25
+    #   else 
+    #     return false
+    #   end
+    # end
     
     
 

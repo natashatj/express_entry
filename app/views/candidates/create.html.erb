@@ -19,8 +19,14 @@
               <li><%= @candidate_age%></li>
               <li><%= @candidate_age_points%></li>
               <li>Education</li>
-              <li><%= @candidate.edu_level.name_of_edu_level%></li>
+              <li><%= @candidate.edu_level.name_of_edu_level %></li>
               <li><%= @candidate_edu_points %></li>
+              <li><%= [
+        @candidate_cdn_work_points,
+        @candidate_adapt_cdn_work_ed,
+        @candidate_adapt_cdn_work_frg_work,
+        @candidate_adapt_ed_lang
+      ] %></li>
             </ul>
           </div>
           </div>
