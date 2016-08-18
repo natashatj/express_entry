@@ -26,7 +26,7 @@ class CandidatesController < ApplicationController
    binding.pry
 
     if @candidate.save
-      binding.pry
+  
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
     

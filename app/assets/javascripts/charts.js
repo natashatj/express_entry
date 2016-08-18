@@ -49,39 +49,52 @@ $(function(){
 
 $(function () {
   var data = [];
-  $('#container-for-chart').highcharts({
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
-        }
-    },
-    title: {
-        text: 'Assessment Points'
-    },
-    subtitle: {
-        text: 'Overview for each requirement'
-    },
-    credits: {
-      enabled: false
-    },
-    exporting: { 
-      enabled: false 
-    },
-    plotOptions: {
-        pie: {
-            innerSize: 100,
-            depth: 45
-        }
-    },
-    series: [{
-        name: 'Points',
-        data: data   
-    }]
+   $('#container-for-chart').highcharts({
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: 0,
+          plotShadow: false
+      },
+      title: {
+          text: 'Assessment Points',
+          align: 'center',
+          verticalAlign: 'top',
+          y: 40
+      },
+      tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      credits: {
+        enabled: false
+      },
+      exporting: { 
+        enabled: false 
+      },
+      plotOptions: {
+          pie: {
+              dataLabels: {
+                  enabled: true,
+                  distance: -50,
+                  style: {
+                      fontWeight: 'bold',
+                      color: 'white',
+                      textShadow: '0px 1px 2px black'
+                  }
+              },
+              startAngle: -90,
+              endAngle: 90,
+              center: ['50%', '75%']
+          }
+      },
+      series: [{
+          type: 'pie',
+          innerSize: '50%',
+          data: data
+      }]
+
     });
     // TODO: check how to deal with the DOB
-    $('#dob').on('change', function() {
+    $('#candidate_dob_1i').on('change', function() {
       // date is valid
       var dob = $(this).val();
       var age_points = calculateAgePoints(dob);
@@ -92,7 +105,7 @@ $(function () {
 
     });
 
-    // the button action
+    // MAIN APPLICANT
     $('#candidate-1-foreign-experience-one-or-two-check').one("click", function () {
         var chart = $('#container-for-chart').highcharts();
         data.push(['Foreign Experience', 50]);
@@ -113,4 +126,11 @@ $(function () {
         data.push(['Canadian Experience', 35]);
         chart.series[0].setData(data,true);
     });
+
+    // SECONDARY APPLICANT
+    // $('#candidate-2-cdn-xp-ps-greater-than-one').one("click", function () {
+    //     var chart = $('#container-for-chart').highcharts();
+    //     data.push(['Canadian Experience', 35]);
+    //     chart.series[0].setData(data,true);
+    // });
 });
