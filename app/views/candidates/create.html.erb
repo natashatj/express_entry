@@ -1,6 +1,8 @@
-<h1>Candidates#create</h1>
-<p>Find me in app/views/candiates/create.html.erb</p>
-<h2>Summary Page</h2>
+
+<div class="move">
+  <h3>Express Entry: Points Summary</h3>
+</div>
+<hr class="hr_summary">
 <script type="text/javascript">
   $("h2").click(function(){
    var $h2=$('h2'), isEditable=$h2.is('.editable');
@@ -10,11 +12,12 @@
 <section id="summary_table">
   <div class= "container_summary">
     <div class= "row_summary">
-      <div class="col-md-4 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="summary_start">
           <div class="summary_header">Your Assessment details</div>
           <div class="summary_list">
             <ul class="summary_ul">
+
               <li>Age</li>
               <li><%= @candidate_age%></li>
               <li><%= @candidate_age_points%></li>
@@ -27,35 +30,37 @@
         @candidate_adapt_cdn_work_frg_work,
         @candidate_adapt_ed_lang
       ] %></li>
+
+              <li class="title"> Category</li>
+                <p class="title"> Points</p>
+              <li class="first">Age</li>
+                <p class="first"><%= @candidate_age_points%> </p>
+              <li class="second">Education</li>
+                <p class="second"><%= @candidate_edu_points %> </p>
+              <li>TOTAL POINTS <%= @candidate.points%></li>
+
             </ul>
+          <%if @candidate.points > 400 %>
+            <div class="eligibility"> Eligible</div>
+          <%else%>
+            <div class="eligibility"> Ineligible</div>
+          <% end %>
           </div>
           </div>
         </div>
-       <div class="col-md-4 col-sm-12 col-xs-12">
+       <div class="col-md-6 col-sm-12 col-xs-12">
          <div class="summary_start">
            <div class="summary_header">Points of improvement</div>
            <div class="summary_list">
             <ul class="summary_ul">
-              <li>candidate points</li>
+               <%if @candidate.points < 400 %>
+              <div class="short_by">POINTS SHORT BY : <%= 400 - @candidate.points%></div>
               <li>candidate age</li>
               <li>candidate edu</li>
               <li>candidate cdn work</li>
               <li>candidate adaot ed cdn xp</li>
+              <% end %>
             </ul>
-           </div>
-         </div>
-       </div>
-       <div class="col-md-4 col-sm-12 col-xs-12">
-         <div class="summary_start" id= "fiddle_summary">
-           <div class="summary_header"> Fiddle with it</div>
-           <div class="summary_list" id= "fiddle_list">
-             <ul class="summary_ul" id= "fiddle_ul">
-              <li>candidate points</li>
-              <li>candidate age</li>
-              <li>candidate edu</li>
-              <li>candidate cdn work</li>
-              <li>candidate adaot ed cdn xp</li>
-             </ul>
            </div>
          </div>
        </div>

@@ -80,6 +80,7 @@ class CandidatesController < ApplicationController
       @candidate_adapt_cdn_work_frg_work = adaptability_frg_xp_and_cdn_xp
       @candidate_adapt_ed_lang = adaptability_ed_lang
 
+
       @candidate.points += [
         @candidate_age_points,
         @candidate_edu_points,
@@ -90,6 +91,7 @@ class CandidatesController < ApplicationController
       ].sum
 
       
+
       # binding.pry
       #add adapt methods that include lang
       #spouse first lang method 
