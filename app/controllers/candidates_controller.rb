@@ -81,7 +81,7 @@ class CandidatesController < ApplicationController
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
       @candidate_adapt_ed_lang = adaptability_ed_lang
-      binding.pry
+      # binding.pry
       #add adapt methods that include lang
       #spouse first lang method 
     else
