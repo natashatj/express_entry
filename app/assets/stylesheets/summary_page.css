@@ -1,12 +1,45 @@
 
-.col-md-4, .col-sm-12, .col-xs-12 {
-	  padding-right: 15px;
-    padding-left: 15px;
+.col-md-6, .col-sm-12, .col-xs-12 {
+	padding-right: 70px;
+  padding-left: 50px;
 }
 .container_summary {
 	/*background-color: lightgreen;*/
 }
 
+.eligibility {
+  color: black;
+  background-color: white;
+  border: 2px solid white;
+  margin: 0 70px 0 70px;
+  font-size: 25px;
+}
+
+.first{
+    display: table-cell;
+    padding-left: 80px;
+    padding-right: 90px;
+    /*border: 1px solid;*/
+}
+.hr_summary {
+	margin-top:-10px;
+	width:85%;
+}
+.h2_summary{
+	display: inline-block;
+  margin-right: 930px;
+  font-family: sans-serif-condensed;
+  font-size: 35px;
+}
+h3{
+	  font-size: 30px;
+    margin-top: 70px;
+    color: grey;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #f8f8f8;
+    padding: 10px 10px 10px 10px;
+}
+}
 .row_summary {
 	/*border:dotted 2px black;*/
   margin-left: auto;
@@ -14,26 +47,57 @@
   border-radius: 50px;
 }
 
+.short_by {
+	color: black;
+  background-color: white;
+  border: 2px solid white;
+  margin: 0 70px 0 70px;
+  font-size: 15px;
+  margin-top: 10px;
+}
 
 .summary_header {
-	/*background-color: lightpink;*/
-	border-bottom: solid 1px grey;
-	width: auto;
+	border-bottom: solid 3px white;
+	border-radius: 10px 10px 0 0;
+	color: whitesmoke;
+	font-size: 31px;
+	font-family: Open Sans Condensed, Times;
 	height: 80px;
+	margin-top: 0;
+	padding-top: 20px;
+	width: auto;
+  
+  
+ 
 }
 .summary_list {
 	/*background-color: turquoise;*/
 	display: block;
 	height:267px;
 
+
+}
+.second{
+    /*display: table-cell;
+    padding-left: 82px;
+    padding-right: 60px;
+    */
+    display: inline-block;
+    padding-left: 55px;
+    padding-right: 72px;
+   
 }
 
 .summary_start {
+	background-color: #014c8c;
 	border:solid 1px grey;
-	height: 350px;
+	border-radius: 20px;
+	color: white;
+	height: 450px;
 	margin-bottom: 10px;
   margin-left: 30px;
   margin-right: 5px;
+  
 }
 
 #summary_table {
@@ -48,5 +112,18 @@
   list-style: none;
   line-height: 42px;
   padding: 0;
+	font-style: 'Open Sans Condensed', sans-serif;
+	margin: 0 50px;
 }
+
+.title{
+	  display: inline-block;
+    padding-left: 50px;
+    padding-right: 60px;
+    font-size: 20px;
+}
+
+
+
+
 
