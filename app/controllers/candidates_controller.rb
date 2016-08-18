@@ -68,11 +68,11 @@ class CandidatesController < ApplicationController
       @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_speaking])
     end
 
+
     if @candidate.save
   
       @candidate_age = calculate_age(@candidate.dob)
       @candidate_age_points = calculate_points_for_age(@candidate_age)
-    
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
 
 
