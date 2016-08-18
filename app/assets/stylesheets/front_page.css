@@ -25,7 +25,7 @@
   border-top: transparent;
   border-left: transparent;
   border-right: transparent;
-  border-bottom: 4px solid;
+  border-bottom: 4px solid #3E3F41;
   background: transparent;
 }
 .start-assessment p{
@@ -38,7 +38,7 @@
   color: #750000;
 }
 .start-assessment p a:hover{
-  color: black;
+  color: #3E3F41;
 }
 img.maple{
   width: 7%;

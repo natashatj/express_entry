@@ -14,6 +14,8 @@
     </ul>
   </div>
   <% end %>
+  <!-- <progress max="100" value="0" id="progress"></progress> -->
+  <div id="main-form">
   <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
   <%= f.hidden_field :assessments_id, value: @id %>
   <div id="candidate-1-first-name">
@@ -244,6 +246,7 @@
         <%= f.submit "Submit" %>
       </div>
       <% end %> 
+      </div>
       </div>
       </div>
     <div class="container-for-chart">
