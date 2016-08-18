@@ -28,12 +28,7 @@
     <%= f.text_field :last_name, :placeholder => "Last name", :class => "form-effect"%> 
   </div>
   <div id="candidate-1-dob">
-    <%= f.label :dob %>
-<<<<<<< HEAD
     <%= f.date_select(:dob, options = {start_year: 1900}, :class => "dropdown") %>  
-=======
-    <%= f.date_select :dob, :start_year => 1900 %>  
->>>>>>> charts_part_two
   </div>
   <div id="candidate-1-country">
     <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of Residency"%>
@@ -80,92 +75,7 @@
   <div id="candidate-1-edu-level">
     <%= f.select "edu_level_id", options_from_collection_for_select(@edu_levels, "id", "name_of_edu_level"), prompt: "Select your level of education"%>
   </div>
-  <div class ="language_dropdown" id="candidate-1-first-language">
-    <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
-    <div>
-      <select id="tests" id="candidate-1-test-first-language" class="dropdown">
-        <option> Select test </option>
-        <% @language_tests.each do |test| %>
-        <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_reading" id="candidate-1-score-ranges-reading-first-language">
-        <option> Select reading score </option>
-        <% @reading_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_writing" id="candidate-1-score-writing-first-language">
-        <option> Select writing score </option>
-        <% @writing_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_speaking" id="candidate-1-score-speaking-first-language">
-        <option> Select speaking score </option>
-        <% @speaking_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_listening" id="candidates-1-score-listening-first-language">
-        <option> Select listening score </option>
-        <% @listening_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-  <div class ="language_dropdown" id="candidate-1-second-language">
-    <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your second language"%>
-    <div>
-      <select id="tests" id="candidate-1-test-second-language">
-        <option> Select test </option>
-        <% @language_tests.each do |test| %>
-        <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_reading" id="candidate-1-score-ranges-reading-second-language">
-        <option> Select reading score </option>
-        <% @reading_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_writing" id="candidate-1-score-writing-second-language">
-        <option> Select writing score </option>
-        <% @writing_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_writing"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_speaking" id="candidate-1-score-speaking-second-language">
-        <option> Select speaking score </option>
-        <% @speaking_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_speaking"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <select class="score_ranges_listening" id="candidates-1-score-listening-second-language">
-        <option> Select listening score </option>
-        <% @listening_scores.each do |score| %>
-        <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_listening"><%= score.name_score %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
+  <%= render 'language' %> 
   <div>
     <!-- HIDDEN FORM -->
     <div id="second-applicant-form" class="second_applicant_does_not_exist">
@@ -237,7 +147,7 @@
         </div>
       </div>
     </div>
-       <div>
+       <div class="button-container">
         <%= f.submit "Submit", :class => "submit-button" %>
       </div>
       <% end %> 

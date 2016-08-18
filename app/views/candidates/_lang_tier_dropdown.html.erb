@@ -1,0 +1,12 @@
+<!-- To pass in:  language (e.g. 'eng'), test (eg 'celpip'), skill (eg 'reading') -->
+
+<!-- <select class="score_ranges_reading" id="candidate-1-score-ranges-reading-first-language"> -->
+
+<select name='<%= "#{language}_#{test}_#{skill}" %>' class="score_ranges_reading" >
+  <option> Select <%= skill %> score </option>
+  <% @score_tiers[test.to_sym][skill[0].to_sym].each do |score| %>
+    <option value="<%= score.id %>" data-test="<%= score.language_test_id%>" class="options_score_reading"><%= score.name_score %></option>
+  <% end %>
+</select>
+
+

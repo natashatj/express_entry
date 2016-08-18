@@ -45,11 +45,11 @@ LanguageTest.create language: "English", test_evaluation: "Informal"
 #
 #
 #INFORMAL FRENCH
-LangScoreTier.create(language_test_id: 1, name_score: "Beginner", clb: "4 or 5")
+# LangScoreTier.create(language_test_id: 1, name_score: "Beginner", clb: "4 or 5")
 
-	LangScoreTier.create language_test_id: 1, name_score: "Intermediate", clb: "6 or 7"
+# 	LangScoreTier.create language_test_id: 1, name_score: "Intermediate", clb: "6 or 7"
 
-	LangScoreTier.create language_test_id: 1, name_score: "Advance", clb: "8 to 10"
+# 	LangScoreTier.create language_test_id: 1, name_score: "Advance", clb: "8 to 10"
 
 	#TEF FRENCH
 	#reading(on or after April 1st)
@@ -113,19 +113,6 @@ LangScoreTier.create(language_test_id: 1, name_score: "Beginner", clb: "4 or 5")
 
 	#ENGLISH CELPIP
 	#Reading/Writing/Speaking/Listening
-	# LangScoreTier.create language_test_id: 2, name_score: "4", clb: "4"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "5", clb: "5"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "6", clb: "6"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "7", clb: "7"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "8", clb: "8"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "9", clb: "9"
-
-	# LangScoreTier.create language_test_id: 2, name_score: "10", clb: "10"
 
 	['speaking', 'writing', 'reading', 'listening'].each do |skill|
 		(4..10).to_a.each do |val|
@@ -196,11 +183,11 @@ LangScoreTier.create(language_test_id: 1, name_score: "Beginner", clb: "4 or 5")
 	LangScoreTier.create language_test_id: 4, name_score: "7.5", clb: "10", skill: "speaking"
 
 	#ENGLISH INFORMAL
-	LangScoreTier.create language_test_id: 5, name_score: "Beginner", clb: "4 or 5"
+	# LangScoreTier.create language_test_id: 5, name_score: "Beginner", clb: "4 or 5"
 
-	LangScoreTier.create language_test_id: 5, name_score: "Intermediate", clb: "6 or 7"
+	# LangScoreTier.create language_test_id: 5, name_score: "Intermediate", clb: "6 or 7"
 
-	LangScoreTier.create language_test_id: 5, name_score: "Advanced", clb: "8 or 10"
+	# LangScoreTier.create language_test_id: 5, name_score: "Advanced", clb: "8 or 10"
 
 	puts "#{LangScoreTier.count} of language scores imported"
 

@@ -1,0 +1,10 @@
+<div id='<%="#{language}_#{test}_div"%>' style="display:none">
+  <% ['reading', 'writing', 'speaking', 'listening'].each do |sk| %>
+    <%= render partial: "lang_tier_dropdown", 
+              locals: {language: language, test: test, skill: sk} %>
+    <br>
+  <% end %>
+</div>
+
+
+<!-- To pass in:  language (e.g. 'eng'), test (eg 'celpip') -->

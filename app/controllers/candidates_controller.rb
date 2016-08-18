@@ -10,6 +10,35 @@ class CandidatesController < ApplicationController
     @writing_scores = LangScoreTier.all.where(skill: "writing")
     @speaking_scores = LangScoreTier.all.where(skill: "speaking")
     @listening_scores = LangScoreTier.all.where(skill: "listening")
+
+    celpip_score_tiers = LangScoreTier.all.where(language_test_id: LanguageTest.where(test_evaluation: "CELPIP")[0].id)
+    tefl_score_tiers = LangScoreTier.all.where(language_test_id: LanguageTest.where(test_evaluation: "TEFL")[0].id)
+    ielts_score_tiers = LangScoreTier.all.where(language_test_id: LanguageTest.where(test_evaluation: "IELTS")[0].id)
+
+    @score_tiers = {
+      celpip: {
+        r: celpip_score_tiers.where(skill: "reading"),
+        w: celpip_score_tiers.where(skill: "writing"),
+        l: celpip_score_tiers.where(skill: "listening"),
+        s: celpip_score_tiers.where(skill: "speaking"),
+      },
+      ielts: {
+        r: ielts_score_tiers.where(skill: "reading"),
+        w: ielts_score_tiers.where(skill: "writing"),
+        l: ielts_score_tiers.where(skill: "listening"),
+        s: ielts_score_tiers.where(skill: "speaking"),
+      },
+      tefl: {
+        r: tefl_score_tiers.where(skill: "reading"),
+        w: tefl_score_tiers.where(skill: "writing"),
+        l: tefl_score_tiers.where(skill: "listening"),
+        s: tefl_score_tiers.where(skill: "speaking"),
+      }
+    }
+
+    p "how about celpip reading?"
+    p @score_tiers[:celpip][:r]
+    p "done"
   end
 
   def create
@@ -19,10 +48,26 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
-     puts "this is params"
-     params
-     puts "whitelisted"
-     candidate_params
+
+    if params[:eng_test_choice] == 'CELPIP'
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_reading])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_writing])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_listening])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_celpip_speaking])
+    elsif params[:eng_test_choice] == 'IELTS'
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_reading])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_writing])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_listening])
+      @candidate.lang_data.new(lang_score_tier_id: params[:eng_ielts_speaking])
+    end
+
+    if params[:fr_test_choice] == 'TEFL'
+      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_reading])
+      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_writing])
+      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_listening])
+      @candidate.lang_data.new(lang_score_tier_id: params[:fr_tefl_speaking])
+    end
+
     if @candidate.save
   
       @candidate_age = calculate_age(@candidate.dob)
@@ -31,9 +76,12 @@ class CandidatesController < ApplicationController
       @candidate_edu_points = calculate_points_for_edu(@candidate.edu_level_id)
 
 
+
       @candidate_cdn_work_points = cdn_work(@candidate.cdn_xp_years)
       @candidate_adapt_cdn_work_ed = adaptability_ed_cdn_xp
       @candidate_adapt_cdn_work_frg_work =adaptability_frg_xp_and_cdn_xp
+      @candidate_adapt_ed_lang = adaptability_ed_lang
+      binding.pry
       #add adapt methods that include lang
       #spouse first lang method 
     else
@@ -234,25 +282,16 @@ class CandidatesController < ApplicationController
     end
 
     def adaptability_ed_lang
-      if @candidate_2.edu_level_id == 4 && @candidate_2.cdn_xp_years == 1
-      @candidate_2.points += 13
-    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-      @candidate_2.points += 25
-    elsif (@candidate_2.edu_level_id == 5 || @candidate_2.edu_level_id == 6 || @candidate_2.edu_level_id == 7) && @candidate_2.cdn_xp_years >= 2
-      @candidate_2.points += 25
-    else 
-      return false
-    end
 
-      if @candidate.edu_level_id.numbercred == 1 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-        candidate.points += 13
-      elsif candidate.edu_level.cred == 1 && (candidate.lang_test_data.clb >= 9)
-        candidate.points += 25
-      elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb == 7 || candidate.lang_test_data.clb == 8)
-        candidate.points += 25
-      elsif candidate.edu_level.cred == 2 && (candidate.lang_test_data.clb >= 9)
-        candidate.points += 50 
-      end 
+      if @candidate.edu_level_id == 4 && @candidate.lang_data(lang_score_tier_id: 4)
+      @candidate.points += 13
+    # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+    #   @candidate.points += 25
+    # elsif (@candidate.edu_level_id == 5 || @candidate.edu_level_id == 6 || @candidate.edu_level_id == 7) && @candidate.cdn_xp_years >= 2
+    #   @candidate.points += 25
+      else 
+        return false
+      end
     end
     
     

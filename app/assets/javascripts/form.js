@@ -1,27 +1,47 @@
 // CANDIDATE FORM
 
+// $(function(){
+//   function updateLanguageTestMenu(selectedLanguage) {
+//     var $ele = $("eng_celpip_div");
+//     $ele.each(function(){
+//       if ($(this).data('lang') == selectedLanguage) {
+//        $(this).show();
+//      } 
+//      else {
+//        $(this).hide();
+//      }
+//    })
+//   }
+//   $("#language").change(function() {
+//     var selectedLanguage = $("#test-options-eng option:selected").text();
+//     updateLanguageTestMenu(selectedLanguage);
+//     console.log(selectedLanguage)
+
+//   });
+// })
+
 $(function(){
-  function updateLanguageTestMenu(selectedLanguage) {
-    var $ele = $(".options_eval");
-    $ele.each(function(){
-      if ($(this).data('lang') == selectedLanguage) {
-       $(this).show();
-     } 
-     else {
-       $(this).hide();
-     }
-   })
-  }
-  $("#language").change(function() {
+  $("#test-options-eng").on('change', function(event){
+    $('#eng_celpip_div').hide();
+    $('#eng_ielts_div').hide();
+    var newVal = $(event.target).find(':selected').text();
+    if (newVal === "CELPIP") {
+      $('#eng_celpip_div').show();
+    } else if (newVal === "IELTS"){
+      $('#eng_ielts_div').show();
+    }
+  })
+
+  $("#test-options-fr").on('change', function(event){
+    $('#fr_tefl_div').hide();
+    var newVal = $(event.target).find(':selected').text();
+    if (newVal === "TEFL") {
+      $('#fr_tefl_div').show();
+    }
+  })
 
 
-    var selectedLanguage = $("#language option:selected").text();
-    updateLanguageTestMenu(selectedLanguage);
-    console.log(selectedLanguage)
-
-  });
-})
-
+});
 // $(function(){
 //   function updateScoreMenu(selectedTest) {
 //     var $ele = $(".options_score");
@@ -124,16 +144,6 @@ $(function(){
 //   });
 // });
 
-// SPOUSE FORM
-// render the second form if application has two candidates
-$(function(){
-  $(".spouse").on("click", function(){
-    if($(".left-side-form").length == 1){
-      // Candidate.create
-     $(".left-side-form").clone().appendTo(".personal-forms"); 
-    }
-  });
-});
 
 
 

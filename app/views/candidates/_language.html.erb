@@ -1,0 +1,25 @@
+<div class ="language_dropdown" id="candidate-1-language">
+  <label>English Test Results</label>
+  <select name="eng_test_choice" id="test-options-eng" class="score_ranges_reading">
+    <option>None</option>
+    <option>CELPIP</option>
+    <option>IELTS</option>
+  </select>
+  <br>
+
+  <!-- <div style:> -->
+  <%= render partial: "lang_test_multi_dropdown", locals: {language: 'eng', test: 'celpip'} %>
+  <!-- </div> -->
+  <!-- <div class=".second_applicant_does_not_exist"> -->
+  <%= render partial: "lang_test_multi_dropdown", locals: {language: 'eng', test: 'ielts'} %>
+  <!-- </div> -->
+ 
+  <label>French Test Results</label>
+  <select name="fr_test_choice" id="test-options-fr" class="score_ranges_reading">
+    <option>None</option>
+    <option>TEFL</option>
+  </select>
+  <%= render partial: "lang_test_multi_dropdown", locals: {language: 'fr', test: 'tefl'} %>
+  <br>
+</div>
+

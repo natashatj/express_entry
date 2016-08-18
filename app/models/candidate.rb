@@ -1,8 +1,8 @@
 class Candidate < ApplicationRecord
 
   belongs_to :assessment, required: false
-  has_many :lang_score_tiers
-  has_many :language_tests, through: :lang_score_tiers
+  has_many :lang_score_tiers, through: :lang_data
+  has_many :lang_data
   belongs_to :edu_level, required: false
 
   # validates :assessments_id#, presence: true
