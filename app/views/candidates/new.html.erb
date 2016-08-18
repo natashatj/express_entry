@@ -28,12 +28,8 @@
     <%= f.text_field :last_name, :placeholder => "Last name", :class => "form-effect"%> 
   </div>
   <div id="candidate-1-dob">
-    <%= f.label :dob %>
-<<<<<<< HEAD
+ 
     <%= f.date_select(:dob, options = {start_year: 1900}, :class => "dropdown") %>  
-=======
-    <%= f.date_select :dob, :start_year => 1900 %>  
->>>>>>> charts_part_two
   </div>
   <div id="candidate-1-country">
     <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of Residency"%>
