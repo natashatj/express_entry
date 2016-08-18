@@ -42,27 +42,38 @@ function calculateAgePoints(dob){
 }
 
 $(function(){
-  $("#candidate-1-spouse").on("click", function(){
+  $("#candidate-1-spouse").one("click", function(){
     $("#second-applicant-form").toggleClass("second_applicant_does_not_exist");
   });
 });
 
 $(function () {
   var data = [];
+  Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+    return {
+      radialGradient: {
+        cx: 0.5,
+        cy: 0.3,
+        r: 0.7
+      },
+      stops: [
+        [0, color],
+        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+      ]
+    };
+  });
    $('#container-for-chart').highcharts({
       chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: 0,
-          plotShadow: false
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
       },
       title: {
-          text: 'Assessment Points',
-          align: 'center',
-          verticalAlign: 'top',
-          y: 40
+        text: 'Assessment Points'
       },
       tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
       },
       credits: {
         enabled: false
@@ -71,20 +82,18 @@ $(function () {
         enabled: false 
       },
       plotOptions: {
-          pie: {
-              dataLabels: {
-                  enabled: true,
-                  distance: -50,
-                  style: {
-                      fontWeight: 'bold',
-                      color: 'white',
-                      textShadow: '0px 1px 2px black'
-                  }
-              },
-              startAngle: -90,
-              endAngle: 90,
-              center: ['50%', '75%']
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            },
+            connectorColor: 'silver'
           }
+        }
       },
       series: [{
           type: 'pie',
@@ -123,14 +132,29 @@ $(function () {
     });
     $('#candidate-1-cdn-xp-ps-greater-than-one').one("click", function () {
         var chart = $('#container-for-chart').highcharts();
-        data.push(['Canadian Experience', 35]);
+        data.push(['Canadian Experience', 25]);
         chart.series[0].setData(data,true);
     });
-
-    // SECONDARY APPLICANT
-    // $('#candidate-2-cdn-xp-ps-greater-than-one').one("click", function () {
-    //     var chart = $('#container-for-chart').highcharts();
-    //     data.push(['Canadian Experience', 35]);
-    //     chart.series[0].setData(data,true);
-    // });
+    $('#candidate-1-edu-level').on("change", function () {
+        var chart = $('#container-for-chart').highcharts();
+        data.push(['Education', 45]);
+        chart.series[0].setData(data,true);
+    });
+    $('#candidate-1-cdn-xp-work-permit-paid').on("click", function () {
+        var chart = $('#container-for-chart').highcharts();
+        data.push(['Canadian experience', 55]);
+        chart.series[0].setData(data,true);
+    });
+    $('#candidate-1-cdn-xp-work-perm-dli').on("click", function () {
+        var chart = $('#container-for-chart').highcharts();
+        data.push(['Canadian experience', 50]);
+        chart.series[0].setData(data,true);
+    });
+    // make sure the div in _lang_test_multi_dropdown.html.erb has a class='lang_results'
+    // though not sure it will work
+    $('.lang_results').on("change", function () {
+        var chart = $('#container-for-chart').highcharts();
+        data.push(['Language', 5]);
+        chart.series[0].setData(data,true);
+    });
 });

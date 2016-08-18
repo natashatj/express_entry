@@ -7,12 +7,18 @@
 	/*background-color: lightgreen;*/
 }
 
+.category {
+  font-family: ""
+}
+
 .eligibility {
   color: black;
   background-color: white;
   border: 2px solid white;
   margin: 0 70px 0 70px;
   font-size: 25px;
+  border-radius: 10px 10px;
+  font-family: "Cabin";
 }
 
 .first{
@@ -21,6 +27,13 @@
     padding-right: 90px;
     /*border: 1px solid;*/
 }
+
+.third {
+  display: table-cell;
+    padding-left: 80px;
+    padding-right: 90px;
+}
+
 .hr_summary {
 	margin-top:-10px;
 	width:85%;
@@ -93,8 +106,8 @@ h3{
 	border:solid 1px grey;
 	border-radius: 20px;
 	color: white;
-	height: 450px;
-	margin-bottom: 10px;
+	height: 500px;
+	margin-bottom: 40px;
   margin-left: 30px;
   margin-right: 5px;
   
@@ -104,16 +117,17 @@ h3{
 	/*background-color: lightblue;*/
 	position: relative;
 	display:block;
-	height: 470px;
+	height: 570px;
 }
 
 .summary_ul {
   /*text-align: -webkit-auto;*/
   list-style: none;
-  line-height: 42px;
+  line-height: 20px;
   padding: 0;
 	font-style: 'Open Sans Condensed', sans-serif;
 	margin: 0 50px;
+  font-family: Open Sans Condensed, Times;
 }
 
 .title{
