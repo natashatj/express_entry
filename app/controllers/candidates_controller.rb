@@ -19,10 +19,12 @@ class CandidatesController < ApplicationController
 
     #Candidates to create
     @candidate = @assessment.candidates.new(candidate_params)
-     puts "this is params"
-     params
-     puts "whitelisted"
-     candidate_params
+   #  @candidate_id = @candidate.id
+   # @current_candidate = Candidate.find(@candidate_id)
+
+   @language = @candidate.language_tests.new(language_params)
+   binding.pry
+
     if @candidate.save
       binding.pry
       @candidate_age = calculate_age(@candidate.dob)
@@ -68,6 +70,9 @@ class CandidatesController < ApplicationController
       :cdn_xp_none, 
       :cdn_xp_years
       ) 
+  end
+  def language_params
+    params.require(:language_test).permit(:language, :test_evaluation)
   end
 
   def calculate_age(dob)
