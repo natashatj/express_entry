@@ -17,31 +17,26 @@
   <%= form_for :candidate, url:assessment_candidates_path(:assessments_id => @id), :method=>:post do |f| %>
   <%= f.hidden_field :assessments_id, value: @id %>
   <div id="candidate-1-first-name">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>  
+    <%= f.text_field :first_name, :placeholder => "First name", :class => "form-effect"%>
   </div>
   <div id="candidate-1-middle-name">
-    <%= f.label :middle_name %>
-    <%= f.text_field :middle_name %>  
+    <%= f.text_field :middle_name, :placeholder => "Middle name", :class => "form-effect" %>
   </div>
   <div id="candidate-1-last-name">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>  
+    <%= f.text_field :last_name, :placeholder => "Last name", :class => "form-effect"%> 
   </div>
   <div id="candidate-1-dob">
     <%= f.label :dob %>
-    <%= f.calendar_date_select_includes :dob %>  
+    <%= f.date_select(:dob, options = {start_year: 1900}, :class => "dropdown") %>  
   </div>
   <div id="candidate-1-country">
-    <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of residency"%>
+    <%= f.select :country_id, options_from_collection_for_select(Country.all, "id", "name"), prompt: "Country of Residency"%>
   </div>
   <div id="candidate-1-occupation">
-    <%= f.label :occupation %>
-    <%= f.text_field :occupation %>
+    <%= f.text_field :occupation, :placeholder => "Occupation", :class => "form-effect" %>
   </div>
   <div id="candidate-1-funds">
-    <%= f.label :funds %>
-    <span>CDN</span> $<%= f.text_field :funds %>
+    <%= f.text_field :funds, :placeholder => "Funds in $CDN ", :class => "form-effect" %>
   </div>
   <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
   <div id="candidate-1-spouse">
@@ -50,8 +45,7 @@
   </div>
   <!-- FORM TRIGGERED BY JAVASCRIPT SPOUSE -->
   <div id="candidate-1-kids">
-    <%= f.label :kids %>
-    <%= f.text_field :kids %>
+    <%= f.text_field :kids, :placeholder => "Children", :class => "form-effect" %>
   </div>
   <div id="candidate-1-foreign-experience-one-or-two-check">
     <%= f.check_box :frg_work_xp_one_or_two %>
@@ -83,7 +77,7 @@
   <div class ="language_dropdown" id="candidate-1-first-language">
     <%= f.select :language, options_from_collection_for_select(@languages, "id", "language"), prompt: "Select your first language"%>
     <div>
-      <select id="tests" id="candidate-1-test-first-language">
+      <select id="tests" id="candidate-1-test-first-language" class="dropdown">
         <option> Select test </option>
         <% @language_tests.each do |test| %>
         <option value="<%= test.id %>" data-lang="<%= test.language %>" class="options_eval"><%= test.test_evaluation %> </option>
@@ -170,16 +164,13 @@
     <!-- HIDDEN FORM -->
     <div id="second-applicant-form" class="second_applicant_does_not_exist">
       <div id="candidate-2-first-name">
-        <%= f.label :first_name %>
-        <%= f.text_field :demo %>  
+        <%= f.text_field :demo, :placeholder => "First name", :class => "form-effect" %>  
       </div>
       <div id="candidate-2-middle-name">
-        <%= f.label :middle_name %>
-        <%= f.text_field :demo %>  
+        <%= f.text_field :demo, :placeholder => "Middle name", :class => "form-effect" %>  
       </div>
       <div id="candidate-2-last-name">
-        <%= f.label :last_name %>
-        <%= f.text_field :demo %>  
+        <%= f.text_field :demo, :placeholder => "Last name", :class => "form-effect" %>  
       </div>
       <div id="candidate-2-cdn-xp-none">
         <%= f.check_box :demo %>
@@ -241,10 +232,9 @@
       </div>
     </div>
        <div>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", :class => "submit-button" %>
       </div>
       <% end %> 
-      </div>
       </div>
     <div class="container-for-chart">
       <div class="col-md-6 graphs">
