@@ -103,7 +103,7 @@ $(function () {
 
     });
     // TODO: check how to deal with the DOB
-    $('#candidate_dob_1i').on('change', function() {
+    $('#candidate_dob_1i').one('change', function() {
       // date is valid
       var dob = $(this).val();
       var age_points = calculateAgePoints(dob);
@@ -125,9 +125,9 @@ $(function () {
         data.push(['Foreign Experience', 50]);
         chart.series[0].setData(data,true);
     });
-    $('#candidate-1-cdn-xp-years').one("click", function () {
+    $('#candidate-1-cdn-xp-years').one("change", function () {
         var chart = $('#container-for-chart').highcharts();
-        data.push(['Canadian Experience', 35]);
+        data.push(['Years of Canadian Experience', 35]);
         chart.series[0].setData(data,true);
     });
     $('#candidate-1-cdn-xp-ps-greater-than-one').one("click", function () {
@@ -152,7 +152,7 @@ $(function () {
     });
     // make sure the div in _lang_test_multi_dropdown.html.erb has a class='lang_results'
     // though not sure it will work
-    $('.lang_results').on("change", function () {
+    $('#candidate-1-score-ranges-reading-first-language').on("change", function () {
         var chart = $('#container-for-chart').highcharts();
         data.push(['Language', 5]);
         chart.series[0].setData(data,true);

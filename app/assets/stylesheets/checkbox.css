@@ -1,8 +1,9 @@
 input[type="checkbox"] {
-
+ display: inline-block;
+ line-height: 10px;
 }
 
-input[type="checkbox"] + label:before {
+/*input[type="checkbox"] + label:before {
   background-color: white;
   border: 1px solid #ccc;
   content: "";
@@ -15,9 +16,9 @@ input[type="checkbox"] + label:before {
   margin: -2px 6px 0 0;
   vertical-align: middle;
   cursor: pointer;
-}
+}*/
 
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked{
   content: "\2713";
   font-size: 18px;
   line-height: 0.8;

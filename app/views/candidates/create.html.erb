@@ -54,12 +54,11 @@
             <ul class="summary_ul">
                <%if @candidate.points < 400 %>
               <div class="short_by">POINTS SHORT BY : <%= 400 - @candidate.points%></div>
-              <ul>
-              <li>Education: Obtain Master's Degree (ADDITIONAL 15 points)</li>
-              <li>Language: Obtain score of 8 or above on the CELPIP test (ADDITIONAL 11 points) </li>
-              <li>Please take into consideration that to complete these suggestions, your age points will decrease</li>
-              </ul>
-             <!--  <li>candidate adaot ed cdn xp</li> -->
+              
+              <li class="last"> Education: Obtain Master's Degree (ADDITIONAL 15 points)</li>
+              <li class="last">Language: Obtain score of 8 or above on the CELPIP test (ADDITIONAL 11 points) </li>
+              <li class="last">Please take into consideration that to complete these suggestions, your age points will decrease</li>
+              
               <% end %>
             </ul>
            </div>

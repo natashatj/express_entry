@@ -64,10 +64,11 @@ h3{
 .short_by {
 	color: black;
   background-color: white;
-  border: 2px solid white;
+  border: 10px solid white;
   margin: 0 70px 0 70px;
-  font-size: 15px;
+  font-size: 20px;
   margin-top: 10px;
+  margin-bottom: 70px;
 }
 
 .summary_header {
@@ -138,7 +139,13 @@ h3{
     font-size: 20px;
 }
 .total_points {
-  font-family: monospace;
+  font-family: ;
+}
+
+.summary_ul .last{
+    margin: 10px 10px 10px 10px;
+    font-size: 20px;
+
 }
 
 
