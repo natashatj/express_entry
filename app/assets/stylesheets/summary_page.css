@@ -3,9 +3,6 @@
 	padding-right: 70px;
   padding-left: 50px;
 }
-.container_summary {
-	/*background-color: lightgreen;*/
-}
 
 .category {
   font-size: 19px;
@@ -22,35 +19,37 @@
 }
 
 .first{
-    display: table-cell;
-    padding-left: 80px;
-    padding-right: 90px;
+  display: table-cell;
+  padding-left: 80px;
+  padding-right: 90px;
 }
 
 .third {
   display: table-cell;
-    padding-left: 80px;
-    padding-right: 90px;
+  padding-left: 80px;
+  padding-right: 90px;
 }
 
 .hr_summary {
 	margin-top:-10px;
 	width:85%;
 }
+
 .h2_summary{
 	display: inline-block;
   margin-right: 930px;
   font-size: 35px;
 }
+
 h3{
-	  font-size: 30px;
-    margin-top: 70px;
-    color: grey;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    background-color: #f8f8f8;
-    padding: 10px 10px 10px 10px;
+  font-size: 30px;
+  margin-top: 70px;
+  color: grey;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #f8f8f8;
+  padding: 10px 10px 10px 10px;
 }
-}
+
 .row_summary {
   margin-left: auto;
   margin-right: auto;
@@ -76,20 +75,16 @@ h3{
 	height: 80px;
 	margin-top: 0;
 	padding-top: 20px;
-	width: auto;
-  
-  
- 
+	width: auto; 
 }
 .summary_list {
-	/*background-color: turquoise;*/
 	display: block;
 	height:267px;
 }
 .second{
-    display: inline-block;
-    padding-left: 55px;
-    padding-right: 72px;   
+  display: inline-block;
+  padding-left: 55px;
+  padding-right: 72px;   
 }
 
 .summary_start {
@@ -100,8 +95,7 @@ h3{
 	height: 500px;
 	margin-bottom: 40px;
   margin-left: 30px;
-  margin-right: 5px;
-  
+  margin-right: 5px;  
 }
 
 #summary_table {
@@ -120,10 +114,10 @@ h3{
 }
 
 .title{
-	  display: inline-block;
-    padding-left: 50px;
-    padding-right: 60px;
-    font-size: 20px;
+  display: inline-block;
+  padding-left: 50px;
+  padding-right: 60px;
+  font-size: 20px;
 }
 
 .summary_ul .last{

@@ -3,21 +3,6 @@ input[type="checkbox"] {
  line-height: 10px;
 }
 
-/*input[type="checkbox"] + label:before {
-  background-color: white;
-  border: 1px solid #ccc;
-  content: "";
-  display:inline-block;
-  font-size: 12px;
-  height: 16px;
-  width:16px;
-  text-align: center;
-  line-height: 16px;
-  margin: -2px 6px 0 0;
-  vertical-align: middle;
-  cursor: pointer;
-}*/
-
 input[type="checkbox"]:checked{
   content: "\2713";
   font-size: 18px;
