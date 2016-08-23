@@ -18,8 +18,8 @@
   border: 2px solid white;
   margin: 0 70px 0 70px;
   font-size: 25px;
-/*  border-radius: 10px 10px;
-*/  font-family: "Cabin";
+/*  border-radius: 10px 10px;*/
+  font-family: 'Cabin', sans-serif;
 }
 
 .first{
@@ -42,7 +42,7 @@
 .h2_summary{
 	display: inline-block;
   margin-right: 930px;
-  font-family: sans-serif-condensed;
+  /*font-family: sans-serif-condensed;*/
   font-size: 35px;
 }
 h3{
@@ -76,7 +76,7 @@ h3{
 	border-radius: 10px 10px 0 0;
 	color: whitesmoke;
 	font-size: 31px;
-	font-family: Open Sans Condensed, Times;
+	font-family: 'Open Sans Condensed', Times, sans-serif;
 	height: 80px;
 	margin-top: 0;
 	padding-top: 20px;
@@ -129,7 +129,7 @@ h3{
   padding: 0;
 	font-style: 'Open Sans Condensed', sans-serif;
 	margin: 0 50px;
-  font-family: Open Sans Condensed, Times;
+  font-family: 'Open Sans Condensed', Times;
 }
 
 .title{
