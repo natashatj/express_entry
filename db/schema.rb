@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160818005448) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assessments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "points"
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160818005448) do
     t.string   "adapt_trade_cert_lang"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["user_id"], name: "index_assessments_on_user_id"
+    t.index ["user_id"], name: "index_assessments_on_user_id", using: :btree
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -61,9 +64,9 @@ ActiveRecord::Schema.define(version: 20160818005448) do
     t.boolean  "is_married",                   default: false
     t.boolean  "trade_cert",                   default: false
     t.integer  "cdn_xp_years"
-    t.index ["assessment_id"], name: "index_candidates_on_assessment_id"
-    t.index ["country_id"], name: "index_candidates_on_country_id"
-    t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id"
+    t.index ["assessment_id"], name: "index_candidates_on_assessment_id", using: :btree
+    t.index ["country_id"], name: "index_candidates_on_country_id", using: :btree
+    t.index ["edu_level_id"], name: "index_candidates_on_edu_level_id", using: :btree
   end
 
   create_table "countries", force: :cascade do |t|
@@ -88,8 +91,8 @@ ActiveRecord::Schema.define(version: 20160818005448) do
     t.integer  "lang_score_tier_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["candidate_id"], name: "index_lang_data_on_candidate_id"
-    t.index ["lang_score_tier_id"], name: "index_lang_data_on_lang_score_tier_id"
+    t.index ["candidate_id"], name: "index_lang_data_on_candidate_id", using: :btree
+    t.index ["lang_score_tier_id"], name: "index_lang_data_on_lang_score_tier_id", using: :btree
   end
 
   create_table "lang_score_tiers", force: :cascade do |t|
@@ -99,7 +102,7 @@ ActiveRecord::Schema.define(version: 20160818005448) do
     t.string   "skill"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id"
+    t.index ["language_test_id"], name: "index_lang_score_tiers_on_language_test_id", using: :btree
   end
 
   create_table "language_tests", force: :cascade do |t|
@@ -118,4 +121,5 @@ ActiveRecord::Schema.define(version: 20160818005448) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "candidates", "assessments"
 end
